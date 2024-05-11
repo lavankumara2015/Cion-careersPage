@@ -1,0 +1,253 @@
+.application-form__h2 {
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--brandClr);
+    margin-top: 0.8rem;
+}
+.name,
+.dob,
+.highest_graduation,
+.graduation_year,
+.cgpa,
+.current_address,
+.mobile_number,
+.reason_for_applying,
+.cv_uploaded {
+    font-size: 0.45rem;
+    font-weight: 600;
+    padding: 0.8rem; 
+    margin: 0.6rem 0; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+form input , textarea{
+    padding: 0.15rem;
+    width: 5rem;
+    border: 0.05rem solid var(--brandClr);
+    border-radius: 0.1rem;
+    font-size: 0.4rem;
+    outline: none !important;
+}
+form{
+    margin-left: 0.5rem;
+}
+#name{
+    margin-left: 1.80rem;
+}
+#dob{
+    margin-left: 0.52rem;
+}
+#highest_graduation{
+    position: relative;
+    right: 0.8rem;
+}
+#graduation_year{
+    position: relative;
+    right: 0.16rem;
+}
+#cgpa{
+    margin-left: -0.35rem !important;
+}
+#current_address{
+    position: relative;
+    right: 0.15rem;
+}
+#mobile_number{
+    margin-right: 0.75rem;
+    position: relative;
+    right: 0.035rem;
+}
+#email_id{
+    margin-right: 0.75rem;
+    position: relative;
+    right: -1.83rem;
+}
+#reason_for_applying{
+    width: 10rem;
+    height: 3rem;
+    margin-left: 0.5rem;
+}
+#cv_uploaded{
+    margin-left: 0.97rem;
+}
+.form-btn{
+    border-radius: 0.1rem;
+    border: none !important;
+    background-color: var(--brandClr);
+    color: white;
+    font-size: 0.45rem;
+    padding: 0.1rem !important;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 3rem !important;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+    .application-form__h2 {
+      font-size: 0.7rem;
+      text-align: center;
+      color: var(--brandClr);
+      position: relative;
+      left: 3rem;
+    }
+    form{
+      width: 20rem;
+    }
+    .name,
+    .dob,
+    .highest_graduation,
+    .graduation_year,
+    .cgpa,
+    .current_address,
+    .mobile_number,
+    .reason_for_applying,
+    .cv_uploaded {
+        font-size: 0.35rem;
+        font-weight: 500;
+        padding: 0.65rem; 
+        margin: 0.6rem 0; 
+        width: 100%; 
+        box-sizing: border-box; 
+    }
+    form input , textarea{
+        padding: 0.1rem;
+        width: 4rem;
+        height: 0.8rem;
+        border: 0.035rem solid var(--brandClr);
+        border-radius: 0.1rem;
+        margin-top: 0.5rem;
+        font-size: 0.35rem;
+    }
+    #name{
+        margin-left: 0.65rem;
+        position: relative;
+        bottom: 0.75rem;
+    }
+    .dob{
+        position: relative;
+        bottom: 1.41rem;
+        margin-left: 0.69rem;
+    }
+    #dob{
+        margin-left: unset;
+        position: relative;
+        bottom: 2.58rem;
+        left: 6.5rem;
+    }
+    #highest_graduation{
+        margin-left: 13.13rem;
+        position: relative;
+        bottom: 4.4rem;
+    }
+    .highest_graduation{
+        position: relative;
+        bottom: 3.21rem;
+        margin-left: 7.15rem;
+    }
+    .graduation_year{
+        position: relative;
+        bottom: 4.8rem;
+    }
+    #graduation_year{
+        position: relative;
+        bottom: 4.15rem;
+        right: 3.65rem;
+    }
+    #cgpa{
+        position: relative;
+        bottom: 5.95rem;
+        left: 6.85rem;
+    }
+    .cgpa{
+        position: relative;
+        bottom: 4.83rem;
+        right: 2.98rem;
+    }
+    .current_address{
+        position: relative;
+        bottom: 6.63rem;
+        margin-left: 7.3rem;
+    }
+    #current_address{
+
+        position: relative;
+        bottom: 7.77rem;
+        left: 11.82rem;
+    }
+    .mobile_number{
+        position: relative;
+        bottom: 8.19rem;
+    }
+    #mobile_number{
+        position: relative;
+        bottom: 8.96rem;
+        left: 0.15rem;
+    }
+    .email{
+        position: relative;
+        bottom: 9.6rem !important;
+        left: 0.57rem;
+    }
+    #email_id{
+        position: relative;
+        bottom: 10.78rem;
+        left: 6rem;
+    }
+    .experience{
+        position: relative;
+        bottom: 11.4rem;
+        left: 6.39rem;
+    }
+    #experience{
+        position: relative;
+        bottom: 10.77rem;
+        left: 3.17rem;
+    }
+    #reason_for_applying{
+        border: 0.035rem solid var(--brandClr);
+        width: 9.85rem;
+        height: 3.5rem;
+        margin-left: 0.65rem;
+        position: relative;
+        bottom: 11.67rem;
+    }
+    .reason_for_applying{
+        position: relative;
+        bottom: 11.2rem;
+        right: 0.01rem;
+    }
+    form textarea{
+       resize: none;
+       font-size: 0.35rem;
+    }
+    #cv_uploaded{
+      position: relative;
+      bottom: 16.06rem;  
+      left: 8.35rem;
+    }
+    .cv_uploaded{
+        position: relative;
+        bottom: 16.68rem;
+        left: 11.65rem;
+    }
+    #email_id{
+        margin-right: 0.75rem;
+        position: relative;
+        right: -1.83rem;
+    }
+    .form-btn{
+        border: none !important;
+        background-color: var(--brandClr);
+        color: white;
+        font-size: 0.5rem;
+        padding: 0rem !important;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 3rem !important;
+        cursor: pointer;
+        position: relative;
+        bottom: 14.3rem;
+        right: 1.6rem;
+    }
+
+}
