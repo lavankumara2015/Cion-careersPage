@@ -1,11 +1,13 @@
 import './index.css';
-import React, { useRef } from 'react'
-import { baseUrl } from '../../App';
+import React, { useContext, useRef } from 'react'
+import { AppContext, baseUrl } from '../../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
 export const ApplicantForm = (props) => {
+
+  const {applicant_emailID} = useContext(AppContext)
 
 const {careerData} = props
 const navigator = useNavigate();
@@ -23,7 +25,7 @@ const navigator = useNavigate();
         email_id:"",
         experience:"",
         reason_for_applying:"",
-        cv_uploaded:""  
+        cv_uploaded:"",
     });
 
     const handleInputs =(e)=>{
@@ -36,12 +38,13 @@ const navigator = useNavigate();
             ...applicantForm.current,
             role: careerData[0].role,
             role_id: careerData[0].role_id,
-            department: careerData[0].department
+            department: careerData[0].department,
+            applicant_login_email:applicant_emailID
         };
         try {
             const response = await axios.post(`${baseUrl}/Submit-ApplicantDetails`, formData);
             if (response.status === 200) {
-                navigator('/application-created');
+                navigator('/applicationSuccessPage');
             }
         } catch (error) {
             console.error('Error:', error);

@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import "./index.css";
-import { baseUrl } from '../../App';
+import { AppContext, baseUrl } from '../../App';
 // import { Link } from 'react-router-dom';
 import HTMLContent from '../code';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+
 
 function Careers() {
 const navigation = useNavigate();
-
+const {setRole__id} = useContext(AppContext);
   const [careersData, setCareersData] = useState([]);
 
 
@@ -23,9 +26,11 @@ const navigation = useNavigate();
       });
   }, []);
 
-  const handleRoleClick =()=>{
+  const handleRoleClick =(id)=>{
     alert("if you want apply this role please login");
-    navigation('/applicant-login')
+    Cookies.set( 'role_id',id)
+    navigation('/applicant-login');
+    setRole__id(id);
   }
 
   return (
@@ -35,9 +40,10 @@ const navigation = useNavigate();
       {
   careersData.length > 0 ? (
     <div className='cards-main-container'>
+      
       {careersData.map((career) => (
       
-        <div onClick={handleRoleClick}  className="card" key={career.role_id} >
+        <div onClick={()=>handleRoleClick(career.role_id)}  className="card" key={career.role_id} >
           <img className="card__image" src={`../assets/role-icon/${career.role_icon_url}`} alt="image" />
           <h3 className="card__text-h3">{career.role}</h3>
           <p className="card__location">@{career.location}</p>

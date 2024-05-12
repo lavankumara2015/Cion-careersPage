@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { baseUrl } from '../../App';
+import React, { useContext, useState } from 'react';
+import { AppContext, baseUrl } from '../../App';
 import axios from 'axios';
 import { Link, useNavigate, useNavigation } from 'react-router-dom';
 
@@ -39,27 +39,27 @@ const ApplicantRegisterPage = () => {
   };
 
   return (
-    <>
-      <h5>Applicant Register Page</h5>
+    <div className='RegisterPage-container'>
+      <h5 className='RegisterPage-container__h5'>Applicant Register Page</h5>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="applicant_name" className="applicant_name">Name:</label>
+        <label htmlFor="applicant_name" className="applicant_name">Name:</label><br/>
         <input type="text" name="applicant_name" id="applicant_name" placeholder="Enter Your Name" required value={name} onChange={(e) => setName(e.target.value)} /><br />
 
-        <label htmlFor="applicant_email" className="applicant_email"> Email-id :</label>
+        <label htmlFor="applicant_email" className="applicant_email"> Email-id:</label><br/>
         <input type="email" name="applicant_email" id="applicant_email" placeholder="Enter Your Email" required value={email} onChange={(e) => setEmail(e.target.value)} /><br />
 
-        <label htmlFor="applicant_password" className="applicant_password">Password</label>
+        <label htmlFor="applicant_password" className="applicant_password">Password:</label><br/>
         <input type="password" name="applicant_password" id="applicant_password" placeholder="Enter Your Password" required value={password} onChange={(e) => setPassword(e.target.value)} /><br />
 
-        <label htmlFor="confirm_password" className="confirm_password"> Confirm Password:</label>
+        <label htmlFor="confirm_password" className="confirm_password"> Confirm Password:</label><br/>
         <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Your Password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /><br />
 
         {!passwordsMatch && confirmPassword && <p style={{ color: 'red' }}>Passwords do not match!</p>} 
-        <input type='submit' name='submit' />
+        <input className='RegisterPage-container__submit' type='submit' name='submit' />
 
-        <h5>you have already account then <Link to={"/applicant-login"}>click here</Link></h5>
+        <h4 className='RegisterPage-container__h6'>You have already account then  <Link className='RegisterPage-container__Link'  to={"/applicant-login"}> Click here</Link></h4>
       </form>
-    </>
+    </div>
   );
 };
 

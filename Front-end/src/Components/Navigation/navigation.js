@@ -9,6 +9,10 @@ import Careers from '../Careerspage'
 import CareerDetails from '../Careerspage/jobDescription'
 import { ApplicantLogin } from '../ApplicantLogin/loginPage'
 import ApplicantRegisterPage from '../ApplicantLogin/registerPage'
+import { ApplicantDashBoard } from '../Applicantdashboard'
+import { ApplicationSuccessPage } from '../ApplicationSuccess'
+import { ApplicantForgotPassword } from '../ApplicantLogin/forgotPassword'
+import { ApplicantNewPassword } from '../ApplicantLogin/setNewPassword'
 
 
 // import { Error } from '../error'
@@ -23,9 +27,13 @@ export const Navigation = () => {
   <Route path='/' element={<Careers/>}/>
    <Route path='/role-details' element={<RoleForm/>}/>
    <Route path='/application-created' element={<ApplicationDone/>}/>
-  <Route path='/job-description/:id' element={<CareerDetails/>} />
+  <Route path='/job-description' element={<CareerDetails/>} />
   <Route path='/applicant-login' element={<ApplicantLogin/>} />
   <Route path='/applicant-register' element={<ApplicantRegisterPage/>} />
+  <Route path='/applicant-dashboard' element={<ApplicantDashBoard/>} />
+  <Route path='/applicationSuccessPage' element={<ApplicationSuccessPage/>} />
+  <Route path='/applicant-forgotPassword' element={<ApplicantForgotPassword/>} />
+  <Route path='/applicantSetNewPassword' element={<ApplicantNewPassword/>} />
   </Routes>
   </BrowserRouter> 
 

@@ -1,0 +1,50 @@
+
+.dashBoard{
+display: flex;
+justify-content:space-between;
+padding: 1rem 2rem;
+align-items: center;
+
+}
+.dashBoard>h5{
+    color: var(--brandClr);
+
+}
+.dashBoard>button{
+    padding: 0.18rem;
+    background-color: var(--brandClr);
+    color: white;
+    border: none;
+    font-size: 0.45rem;
+    border-radius: 0.1rem;
+}
+.dashBoard+p{
+    color: var(--brandClr);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+
+.dashBoard {
+  text-align: center;
+}
+
+table {
+    width: 95%;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  font-size: 0.35rem;
+}
+
+th {
+  background-color: #f2f2f2;
+}

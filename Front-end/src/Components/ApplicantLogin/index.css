@@ -1,0 +1,277 @@
+.p-inputotp-input {
+    width: 0.7rem !important;
+    margin: 0.1rem;
+    text-align: center;
+  }
+  .OtpFiled {
+    display: flex;
+    align-items: center;
+    gap: 1rem !important;
+  }
+
+  button {
+    cursor: pointer;
+  }
+  .otpPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+
+  .applicant-container {
+    width: 12rem;
+    height: 12rem;
+    background-color: var(--pinkClr);
+    font-size: 0.45rem;
+    margin: auto;
+    margin-top: 5rem;
+    border-radius: 0.1rem;
+  }
+  .applicant-container__h2 ,.RegisterPage-container__h5{
+    color: var(--brandClr);
+    font-size: 1rem;
+    text-align: center;
+    padding-top: 0.65rem;
+  }
+  .applicant-container__Link,
+  .applicant-container__Link2 {
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .applicant-container__Link {
+    font-size: 0.5rem;
+    position: relative;
+    left: 5.5rem;
+    bottom: 0.45rem;
+  }
+  .applicant-container__small {
+    position: relative;
+    font-size: 0.5rem;
+    left: 0.55rem;
+    bottom: 0.2rem;
+  }
+  .applicant-container__submit,.RegisterPage-container__submit {
+    width: 2.5rem !important;
+    color: white;
+    background-color: var(--brandClr);
+    font-size: 0.6rem;
+    cursor: pointer;
+    padding: 0.01rem !important;
+    position: relative;
+    left: 2.75rem;
+    bottom: 0.65rem;
+  }
+  .RegisterPage-container__submit{
+    top: -0.15rem !important;
+ }
+  .applicant-container__h5 {
+    font-weight: 600;
+    font-size: 0.55rem;
+    position: relative;
+    bottom: 0.85rem;
+    margin-left: 0.5rem;
+  }
+  .applicant-container form {
+    margin-left: 1.5rem;
+  }
+  .applicant-container form input ,
+  .RegisterPage-container form input{
+    margin: 0.5rem;
+    padding: 0.4rem;
+    width: 8rem;
+    height: 1.15rem;
+    
+}
+  .applicant-container form label , .RegisterPage-container form label{
+    font-size: 0.6rem;
+    position: relative;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-weight: 600;
+  }
+  .RegisterPage-container{
+    width: 13rem;
+    height: 18rem;
+    background-color: var(--pinkClr);
+    font-size: 0.45rem;
+    margin: auto;
+    margin-top: 3.5rem;
+    border-radius: 0.1rem;
+  }
+ 
+
+.RegisterPage-container form{
+    margin-left: 1.9rem;
+}
+.RegisterPage-container__h6{
+    font-weight: 600;
+    font-size: 0.55rem;
+    position: relative;
+    bottom: 0rem;
+    margin-left: 0rem;
+}
+.RegisterPage-container__Link{
+    text-decoration: none;
+}
+  
+
+
+
+@media screen and (min-width: 768px) {
+  .p-inputotp-input {
+    width: 0.7rem !important;
+    margin: 0.1rem;
+    text-align: center;
+  }
+  .OtpFiled {
+    display: flex;
+    align-items: center;
+    gap: 1rem !important;
+  }
+
+  button {
+    cursor: pointer;
+  }
+  .otpPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .applicant-email-id,
+  .applicant-password {
+    font-size: 0.5rem;
+  }
+  .applicant-container {
+    width: 8.5rem;
+    height: 8.5rem;
+    background-color: var(--pinkClr);
+    font-size: 0.45rem;
+    margin: auto;
+    margin-top: 2rem;
+    border-radius: 0.1rem;
+  }
+  .applicant-container__h2 ,.RegisterPage-container__h5{
+    color: var(--brandClr);
+    font-size: 0.6rem;
+    text-align: center;
+    padding-top: 0.4rem;
+  }
+  .applicant-container__Link,
+  .applicant-container__Link2 {
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .applicant-container__Link {
+    font-size: 0.35rem;
+    position: relative;
+    left: 3.5rem;
+    bottom: 0.45rem;
+  }
+  .applicant-container__small {
+    position: relative;
+    left: 0.3rem;
+    bottom: 0.2rem;
+    font-size: 0.4rem;
+  }
+  .applicant-container__submit {
+    width: 2rem !important;
+    color: white;
+    background-color: var(--brandClr);
+    font-size: 0.4rem;
+    cursor: pointer;
+    padding: 0.01rem !important;
+    position: relative;
+    left: 1.5rem;
+    bottom: 0.6rem;
+  }
+  .applicant-container__h5 {
+    font-weight: 600;
+    font-size: 0.4rem;
+    position: relative;
+    bottom: 0.5rem;
+    margin-left: unset;
+  }
+  .applicant-container form {
+    margin-left: 1.5rem;
+  }
+  .applicant-container form input {
+    margin: 0.25rem;
+    padding: 0.2rem;
+    width: 5rem;
+    height: 0.85rem;
+    
+}
+  .applicant-container form label {
+    font-size: 0.4rem;
+    position: relative;
+    top: 0.3rem;
+    left: 0.3rem;
+    font-weight: 600;
+  }
+  .RegisterPage-container{
+    width: 9rem;
+    height: 11rem;
+    background-color: var(--pinkClr);
+    font-size: 0.45rem;
+    margin: auto;
+    margin-top: 1.5rem;
+    border-radius: 0.1rem;
+  }
+  .RegisterPage-container form label {
+    font-size: 0.4rem;
+    position: relative;
+    top: 0.2rem;
+    left: 0.2rem;
+    font-weight: 600;
+  }
+  .RegisterPage-container form input {
+    margin: 0.15rem;
+    padding: 0.2rem;
+    width: 5rem;
+    height: 0.85rem;
+    
+}
+.RegisterPage-container__submit{
+    width: 2rem !important;
+    color: white;
+    background-color: var(--brandClr);
+    font-size: 0.4rem;
+    cursor: pointer;
+    padding: 0.01rem !important;
+    position: relative;
+    left: 1.5rem;
+    top: 0.2rem !important;
+    
+}
+.RegisterPage-container form{
+    margin-left: 1.8rem;
+}
+.RegisterPage-container__h6{
+    font-weight: 600;
+    font-size: 0.4rem;
+    margin-left: unset;
+    position: relative;
+    right: 0.75rem;
+    top: 0.3rem;
+}
+.RegisterPage-container__Link{
+    text-decoration: none;
+}
+  
+
+  
+}

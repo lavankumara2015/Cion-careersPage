@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../../App";
-import { useParams } from "react-router-dom";
 import HTMLContent from "../code";
 import { ApplicantForm } from "../ApplicationSubmitForm";
+import Cookies from "js-cookie";
 
 function CareerDetails() {
   const [careerData, setCareerData] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
-    const fetchCareerDetails = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/get-JDDetails/${id}`);
-        setCareerData(response.data);
-        console.log(response.data, "getting data");
-      } catch (error) {
-        console.error("Error fetching career details:", error);
-      }
-    };
+    const roleId = Cookies.get("role_id")
+    if(roleId !== undefined){
+      const fetchCareerDetails = async () => {
+        try {
+          const response = await axios.get(`${baseUrl}/get-JDDetails/${roleId}`);
+          setCareerData(response.data);
+          console.log(response.data, "getting data");
+        } catch (error) {
+          console.error("Error fetching career details:", error);
+        }
+      };
+      fetchCareerDetails();
+    }
 
-    fetchCareerDetails();
-  }, [id]);
+  }, []);
 
   const handleApplyNow = () => {
      const myDialogs = document.getElementById("myDialogs");
