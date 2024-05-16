@@ -69,21 +69,40 @@ const handleLogoClick=(logo) => {
       <div className="role-details-container">
         <form action="" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
           
-          <label htmlFor="department">
+          <div className="department-container">
+          <label htmlFor="department" className="department">
             Department:<span style={{ color: "red" }}>*</span>
           </label>
-          <input
+          <br/>
+          {/* <input
             type="text"
             id="department"
             name="department"
             placeholder="Enter Department"
             required
             onChange={handleInput}
-          />
+          /> */}
+          <select id="department" name="department" required  onChange={handleInput}>
+          <option value="" className="Select-Department">Select Department</option>
+            <option value="Digital team">Digital Team</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Accounts/Financial">Accounts/Financial</option>
+            <option value="Operations">Operations</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Nursing">Nursing</option>
+            <option value="Facilities">Facilities</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Nutritionist">Nutritionist</option>
+            <option value="Psychologist">Psychologist</option>
+            <option value="Genetic counsellor">Genetic counsellor</option>
+            <option value="Screening">Screening</option>
+            <option value="Marketing ">Marketing </option>
+          </select>
 
           <label htmlFor="role" className="role">
             Role:<span style={{ color: "red" }}>*</span>
           </label>
+          <br/>
           <input
             type="text"
             id="role"
@@ -92,11 +111,12 @@ const handleLogoClick=(logo) => {
             onChange={handleInput}
             required
           />
-          <br />
-          <br />
+        
+  
           <label htmlFor="location" className="location">
             Location:<span style={{ color: "red" }}>*</span>
           </label>
+          <br/>
           <input
             type="text"
             id="location"
@@ -104,8 +124,9 @@ const handleLogoClick=(logo) => {
             placeholder="Enter Location"
             required
             onChange={handleInput}
-          />
-          <br />
+          /> 
+          </div>
+          <div className="experiences-container">
           <label htmlFor="experiences">
             Experience:<span style={{ color: "red" }}>*</span>
           </label>
@@ -128,9 +149,9 @@ const handleLogoClick=(logo) => {
             required
             onChange={handleInput}
           />
-          <br />
+    
           <label htmlFor="hiring_manager" className="hiring_manager">
-            Hiring Manage
+            Hiring&nbsp;Manager
             <br />
             <span className="hm-class">Name:</span>{" "}
             <span style={{ color: "red" }}>*</span>
@@ -142,7 +163,7 @@ const handleLogoClick=(logo) => {
             placeholder="Enter Hiring-Manager"
             required
             onChange={handleInput}
-          />
+          /></div> <br/>
           <label
             htmlFor="hiring_manager_email"
             className="hiring_manager_email"
@@ -160,9 +181,8 @@ const handleLogoClick=(logo) => {
             required
             onChange={handleInput}
           />
-          <br />
-          <br/>
-          <label htmlFor="role_logo" className="role-image">
+      
+          <label htmlFor="role_logo" className="role-logo">
             Role Logo:<span style={{ color: "red" }}>*</span>
           </label>
           <img
@@ -182,12 +202,12 @@ const handleLogoClick=(logo) => {
           <div id="role-logo-div-container">
             {roleLogo && (
               <img
-                style={{ width: "1rem", height: "1rem", marginLeft: "0.55rem" }}
+                style={{ width: "0.8rem", height: "0.8rem", marginLeft: "0.3rem" }}
                 src={roleLogo}
                 alt="selected-logo"
               />
             )}
-          </div>
+          </div><br/><br/><br/><br/><br/><br/>
           <label htmlFor="job_description" className="job_description">
         Job Description:<span style={{ color: "red" }}>*</span>
       </label>
@@ -206,7 +226,7 @@ const handleLogoClick=(logo) => {
           onChange={handleSkillRequiredChange}
         />
           <br />
-          <center>
+          <center className="center-tag">
             <input
               style={{ position: "relative", bottom: "5rem" }}
               type="submit"

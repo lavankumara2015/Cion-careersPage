@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AppContext, baseUrl } from '../../App';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,12 +6,27 @@ import Cookies from 'js-cookie';
 import './index.css'
 
 export const ApplicantLogin = () => {
-  const {setApplicant_emailID} = useContext(AppContext);
+  const {setApplicant_emailID,setApplicantPassword} = useContext(AppContext);
   const navigation = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError]=useState("");
 
+  useEffect(() => {
+    let token = Cookies.get('token')
+    let firstLogin = Cookies.get('value')
+
+    if(firstLogin === 'firstLogin'){
+      if (token){
+        navigation('/applicant-dashboard', {
+          replace: true
+        })
+    }else{
+      navigation('/applicant-login')
+    }
+   
+    }
+  }, [])
 
 
   const handleFormSubmit = async (e) => {
@@ -24,11 +39,17 @@ export const ApplicantLogin = () => {
       });
 
       if (response.status === 200) {
-        alert("Login Successful");
-        Cookies.set( 'token',response.data.token, {expires : 30})
-        navigation(`/job-description`)
+        Cookies.set( 'token', response.data.token, {expires : 30});
+      const firstLogin =  Cookies.get('value');
+      if(firstLogin !== 'firstLogin'){
+       navigation('/reasonForApplying');
+       setApplicant_emailID(email);
+       setApplicantPassword(password);
+      }else{
+        navigation(`/applicant-dashboard`)
         setApplicant_emailID(email);
-
+      }
+     
       } else {
         console.log(response.data)
       }
@@ -50,9 +71,9 @@ export const ApplicantLogin = () => {
         {
           error && <small className='applicant-container__small' style={{color:"red"}}>{error}</small>
         }<br/>
-        <Link className='applicant-container__Link' to={"/applicant-forgotPassword"}>ForgotPassword</Link><br/>
+        <Link className='applicant-container__Link' to={"/applicant-forgotPassword"}>Forgot Password</Link><br/>
         <input className='applicant-container__submit' type="submit" value="Login" id="login-btn"/>
-        <h5 className='applicant-container__h5'>Don't have account <Link className='applicant-container__Link2' to={'/applicant-register'}>Register here</Link></h5>
+        <h5 className='applicant-container__h5'>Don't have account <Link className='applicant-container__Link2' to={'/applicant-registerForm'}>Register here</Link></h5>
       </form>
     </div>
   );

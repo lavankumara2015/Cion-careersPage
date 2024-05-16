@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { AppContext, baseUrl } from '../../App';
+import {baseUrl } from '../../App';
 import axios from 'axios';
 import { Link, useNavigate, useNavigation } from 'react-router-dom';
+
 
 const ApplicantRegisterPage = () => {
     const navigation = useNavigate();
@@ -14,7 +15,6 @@ const ApplicantRegisterPage = () => {
 
   const handleSubmit =  async(e) => {
     e.preventDefault();
-
 
     const userDetails={
         applicant_name:name,

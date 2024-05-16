@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { baseUrl } from "../../App";
+import { AppContext, baseUrl } from "../../App";
 import HTMLContent from "../code";
-import { ApplicantForm } from "../ApplicationSubmitForm";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function CareerDetails() {
+  const {setJdData} = useContext(AppContext) 
   const [careerData, setCareerData] = useState([]);
+  const navigation = useNavigate();
 
   useEffect(() => {
     const roleId = Cookies.get("role_id")
@@ -15,7 +17,8 @@ function CareerDetails() {
         try {
           const response = await axios.get(`${baseUrl}/get-JDDetails/${roleId}`);
           setCareerData(response.data);
-          console.log(response.data, "getting data");
+          setJdData(response.data);
+          // console.log(response.data, "getting data");
         } catch (error) {
           console.error("Error fetching career details:", error);
         }
@@ -26,34 +29,29 @@ function CareerDetails() {
   }, []);
 
   const handleApplyNow = () => {
-     const myDialogs = document.getElementById("myDialogs");
-     myDialogs.showModal();
-     window.onclick = function(event) {
-        if (event.target == myDialogs) {
-            myDialogs.close();
-        }
-      }
+    //  const myDialogs = document.getElementById("myDialogs");
+    //  myDialogs.showModal();
+    //  window.onclick = function(event) {
+    //     if (event.target == myDialogs) {
+    //         myDialogs.close();
+    //     }
+    //   }
+
+    navigation('/applicant-login');
+
   };
 
     const handleClose =()=>{
-        var myDialogs = document.getElementById("myDialogs");
-        myDialogs.close();
+        // var myDialogs = document.getElementById("myDialogs");
+        // myDialogs.close();
     }
 
 
   return (
     <>
-    {(
-    <dialog  id="myDialogs">
-        <img src="../assets/Cancel.webp" alt="cancel-btn" id="cancel-btn" onClick={handleClose} />
-     <div className="myDialog-containers">
-        <ApplicantForm careerData={careerData} />
-     </div>
-    </dialog>
-    )}
+   
       {careerData.map((value, index) => (
         <div key={index}>
-          <h1 className="role-text-h1">{value.role}</h1>
           <div className="vaccine-container">
             <div className="vaccine-container__role">
               <h2>Role</h2>
@@ -65,13 +63,13 @@ function CareerDetails() {
             </div>
             <div className="vaccine-container__job-description">
               <h2>Job Description</h2>
-              <p>
+              <p className="vaccine-container__p">
                 <HTMLContent content={value.job_description} />
               </p>
             </div>
             <div className="vaccine-container__skill-required">
               <h2>Skill-Required</h2>
-              <p>
+              <p className="vaccine-container__p">
                 <HTMLContent content={value.skill_required} />
               </p>
             </div>
@@ -100,7 +98,6 @@ function CareerDetails() {
           </center>
         </div>
       ))}
-
     </>
   );
 }

@@ -2,27 +2,18 @@
 @media screen and (min-width: 768px) {
   
  .role-details-container{ 
-  width: 80%;
-  height: 210vh;
+  width: 75%;
   margin-left: 4rem;
   box-shadow: 0 0.0377rem 0.41rem 0 rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;   
-  margin-top: 1.2rem;
-  margin-bottom: 2rem;
+  padding: 1.6rem 1.6rem 0 1.6rem;  margin-top: 1.2rem;
+  font-size: 0.50rem;
  }
  .role-text-h1{
-    font-size: 0.9rem;
+    font-size: 0.75rem !important;
     color: var(--brandClr);
-    margin: 0.8rem 0rem 0.5rem 2rem;
+    margin-top: 1rem !important;
   }
-  .role-image-logo{
-    width: 0.7rem;
-    cursor: pointer;
-    position: relative;
-    left: 4.2rem;
-    bottom: 4.3rem;
-    z-index: 1;
-  }
+
  
 #myDialog{
   justify-self: center !important;
@@ -51,161 +42,156 @@
       background-color: rgb(240, 206, 211);
     }
     #role-logo-div-container{
-      width: 3rem;
-      height: 1.4rem;
+      width: 2.3rem;
+      height: 1rem;
       border: 0.03rem solid var(--brandClr);
       position: relative;
-      left: 19.53rem;
-      bottom: 5.8rem;
+      bottom: 2rem;
+      margin-left: 11.21rem;
       display: flex;
       align-items: center;
       border-radius: 0.1rem;
       
     }
-    form input{
-      padding: 0.2rem;
+    .role-details-container form{
+      width: 100% !important;
+      margin-left: -0.25rem !important;
+    }
+    .role-details-container form input{
       border: 0.009rem solid var(--brandClr);
       border-radius: 0.1rem;
       outline: none;
-      margin: 0.5rem;
-      width: 5.5rem;
-    font-size: 0.4rem;
+      margin: 0.25rem;
+      width: 4.2rem;
+    }
+    .experiences-container{
+      display: flex;
+      align-items: center;
+      margin-top: 0.35rem;
+      position: relative;
+      top: 0.15rem;
+    }
+    .department-container{
+      display: flex;
+      align-items: center;
+    
+    }
+    #role{
+      margin-left: 2rem;
+      position: relative;
+      left: 0.93rem;
+    }
+    #department{
+      position: relative;
+      left: 0.52rem;
+      width: 4.2rem !important;
+      height: 0.8rem;
+      border: 0.009rem solid var(--brandClr);
+      border-radius: 0.1rem;
+      font-size: 0.35rem;
+      padding-left: 0.1rem;
+      color: #757575;
+      cursor: pointer;
+      outline: none;
+    
+    }
+    
+    .role{
+      position: relative;
+      left: 1.66rem;
     }
  
-    #role{
-      margin-left: 3.7rem;
-    }
-    .role{
-      margin-left: 2.03rem;
-    }
-    #role_id{
-      margin-left: 2rem;
-    }
     #location{
-      margin-left: 2.5rem;
+      margin-left: 1.42rem;
+      position: relative;
+      left: 0.9rem;
     }
     .location{
-      margin-left: 2rem;
+      margin-left: 1rem;
+      position: relative;
+      left: 0.9rem;
     }
-
     #experiences{
-      margin-left: 0.86rem;
-    }
-     #Eligibility{
-      margin-left: 1.3rem;
-    }
-    .Eligibility{
-      margin-left: 1.89rem;
+      margin-left: 0.5rem;
+      position: relative;
+      left: 0.3rem;
     }
 
-    #reports_to{
-     margin-left: 0.95rem;    
-    }
-  
-    #time_of_work{
+    .Eligibility{
       margin-left: 1.2rem;
     }
-    .time_of_work{
-      margin-left: 1.89rem;
-    }
-    #salary{
-      margin-left: 2.25rem;
-    }
-    #company_profile{
-      position: relative;
-      right: 0.3rem;
-    }
-    .company_profile{
-      margin-left: 1.85rem;
-    }
-    .experiences{
-      margin-left: 0.8rem;
-    }
-   
+
     #hiring_manager{
-    margin-left: 3.02rem;
-    position: relative;
-    bottom: 1.2rem;
+      margin-left: 0.35rem;
+    }
+    .hiring_manager{
+      margin-left: 1rem;
+      position: relative;
+      top: 0.2rem;
     }
     .hm-class{
-    position: relative;
-    bottom: 0.7rem;
-    left: 0.8rem;
+      position: relative;
+      bottom: 0.15rem;
+   
     }
     .hm-class+span{
       position: relative;
-      left: 0.62rem;
-      bottom: 0.66rem;
+      bottom: 0.15rem;
+      right: 0.1rem;
     }
     .hme-class{
-     margin-left: 13.8rem;
-     position: relative;
-     bottom: 1.25rem;
+      position: relative;
+      bottom: 0.35rem;
     }
     .hme-class+span{
       position: relative;
-      bottom: 1.25rem;
-      right: 0.2rem;
+      bottom: 0.35rem;
+      right: 0.1rem;
      }
     #hiring_manager_email{
-    margin-left:  2.25rem;
-   position: relative;
-   bottom: 3.2rem;
-   left: 0.88rem;
-    }
-    .hiring_manager_email{
-      margin-left: 2rem;
-    position: relative;
-    bottom: 1.5rem;
-    }
-    #role_overview{
-      margin-left: 1.25rem;
+      margin-left: 1.75rem;
       position: relative;
-      bottom: 2.75rem;
-    }
-    .role_overview{
-      position: relative;
-      bottom: 2.75rem;
-    }
-    .role-image{
-      position: relative;
+      bottom: 0.85rem;
    
-      margin-left: 13.8rem;
-      bottom: 4.5rem;
+    }
+  .role-logo{
+    margin-left: 0.9rem;
+    position: relative;
+    bottom: 0.96rem;
+  }
+    .role-image-logo{
+      position: relative;
+      left: 1.75rem;
+      bottom: 0.75rem;
+      width: 0.4rem;
+      cursor: pointer;
+      z-index: 1;
     }
     .skill_required,.job_description{
 position: relative;
 bottom: 5rem;
     }
-    
   
-    form textarea{
-      border: 0.009rem solid var(--brandClr);
-    resize: none;
-    outline: none;
-    padding: 0.5rem;
-   border-radius: 0.1rem;
-   margin-left: 1.5rem;
-   width: 88.25%;
-   height: 5rem;
-   margin-top: 0.2rem;
-   font-size: 0.5rem;
-   position: relative;
-   bottom: 5rem;
-    }
     #submit-btn{
     background-color: var(--brandClr);
     color: white;
-    font-size: 0.55rem;
-    padding: 0.15rem !important;
+    font-size: 0.50rem;
     margin-top: 1.5rem;
     cursor: pointer;
-    width: 3.5rem;
+    width: 3rem;
+    height: 1rem;
     border-radius: 0.1rem;
+ 
+    }
+    .center-tag{
+      position: absolute;
+      left: 43%;
+   
     }
     .ck.ck-editor{
       position: relative;
-      bottom:4.8rem
+      bottom:4.8rem;
+    
   
     }
     .ck.ck-editor p , .ck.ck-editor ul{
@@ -214,6 +200,7 @@ bottom: 5rem;
     }
     .ck{
       height: 6rem;
+
     }
     .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) ,.ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content{
       border: 1px solid var(--brandClr) !important;
@@ -225,4 +212,10 @@ bottom: 5rem;
       border: 1px solid var(--brandClr) !important;
    
 }
+.ck.ck-editor__editable_inline>:last-child {
+  margin-left: 0.5rem !important;
 }
+} 
+
+
+

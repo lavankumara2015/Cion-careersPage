@@ -2,7 +2,7 @@ import React from "react";
 
 const HTMLContent = ({ content }) => {
   const parseHTMLContent = (htmlContent) => {
-    const truncatedContent = htmlContent.substring(0, 100000);
+    const truncatedContent = htmlContent.substring(0, 1000);
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = truncatedContent;
     tempDiv.querySelectorAll('li').forEach(li => {

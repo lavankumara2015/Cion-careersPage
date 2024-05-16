@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Navbar } from '../Navbar'
@@ -13,9 +11,8 @@ import { ApplicantDashBoard } from '../Applicantdashboard'
 import { ApplicationSuccessPage } from '../ApplicationSuccess'
 import { ApplicantForgotPassword } from '../ApplicantLogin/forgotPassword'
 import { ApplicantNewPassword } from '../ApplicantLogin/setNewPassword'
-
-
-// import { Error } from '../error'
+import { ApplicantForm } from '../ApplicaticantRegisterForm'
+import { ReasonForApplying } from '../Careerspage/reasonForApplying'
 
 
 export const Navigation = () => {
@@ -34,8 +31,11 @@ export const Navigation = () => {
   <Route path='/applicationSuccessPage' element={<ApplicationSuccessPage/>} />
   <Route path='/applicant-forgotPassword' element={<ApplicantForgotPassword/>} />
   <Route path='/applicantSetNewPassword' element={<ApplicantNewPassword/>} />
+  <Route path='/applicant-registerForm' element={<ApplicantForm/>} />
+  <Route path='/reasonForApplying' element={<ReasonForApplying/>} />
   </Routes>
   </BrowserRouter> 
+
 
   </>
   )

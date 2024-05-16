@@ -1,28 +1,3 @@
-.p-inputotp-input {
-    width: 0.7rem !important;
-    margin: 0.1rem;
-    text-align: center;
-  }
-  .OtpFiled {
-    display: flex;
-    align-items: center;
-    gap: 1rem !important;
-  }
-
-  button {
-    cursor: pointer;
-  }
-  .otpPopup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
 
 
   .applicant-container {
@@ -82,14 +57,19 @@
     margin-left: 1.5rem;
   }
   .applicant-container form input ,
-  .RegisterPage-container form input{
+  .RegisterPage-container form input,
+  .forgotPassword-container form input,
+  .resetPassword-container form input{
     margin: 0.5rem;
     padding: 0.4rem;
     width: 8rem;
     height: 1.15rem;
     
 }
-  .applicant-container form label , .RegisterPage-container form label{
+  .applicant-container form label ,
+   .RegisterPage-container form label
+   ,.forgotPassword-container form label 
+   ,.resetPassword-container form label{
     font-size: 0.6rem;
     position: relative;
     top: 0.5rem;
@@ -106,7 +86,6 @@
     border-radius: 0.1rem;
   }
  
-
 .RegisterPage-container form{
     margin-left: 1.9rem;
 }
@@ -120,37 +99,147 @@
 .RegisterPage-container__Link{
     text-decoration: none;
 }
-  
+.forgotPassword-container{
+  width: 11rem;
+  height: 7rem;
+  background-color: var(--pinkClr);
+  font-size: 0.45rem;
+  margin: auto;
+  margin-top: 5rem;
+  border-radius: 0.1rem;
+}
+.forgotPassword-container__h5,
+.resetPassword-container__h6{
+color: var(--brandClr);
+font-size: 0.75rem;
+text-align: center;
+padding-top: 0.4rem;
+}
+.forgotPassword-container__submit{
+width: 2.5rem !important;
+height: 1rem !important;
+color: white;
+background-color: var(--brandClr);
+font-size: 0.45rem;
+cursor: pointer;
+padding: 0.01rem !important;
+position: relative;
+left: 3rem;
+border: none;
+outline: none;
+border-radius: 0.1rem;
+}
+.forgotPassword-container__small{
+position: relative;
+left: 0.5rem;
+bottom: 0.45rem;
+font-size: 0.45rem;
+}
+.forgotPassword-container form{
+margin-left: 1rem;
+}
 
+.p-inputotp-input {
+  width: 1.2rem !important;
+  height: 1.3rem !important;
+  margin: 0.3rem;
+  text-align: center;
+  position: relative;
+  font-size: 0.50rem;
+  outline: none;
+  left: 1rem;
+  top: 0.3rem;
+  border-radius: 0.1rem;
+  border: 0.005rem solid var(--brandClr);
+}
+.OtpFiled {
+  display: flex;
+  align-items: center;
+  gap: 1rem !important;
+}
+.otpPopup {
+  width: 11rem;
+  height: 8.2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--pinkClr);
+  padding: 0.75rem;
+  border-radius: 0.1rem;
+  box-shadow: 0px 0px 0.13rem rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.otpPopup__h6{
+  color: var(--brandClr);
+  font-size: 0.6rem;
+  text-align: center;
+  padding-top: 0.4rem;
+}
+
+.forgotPassword-container__validOTP{
+  position: relative;
+  top: 0.5rem;
+  left: 1.24rem;
+  font-weight: 600;
+  font-size: 0.5rem;
+}
+.forgotPassword-container__submitOTP,
+.forgotPassword-container__resendOTP{
+  width: 3.25rem !important;
+  height: 1rem !important;
+  color: white;
+  background-color: var(--brandClr);
+  font-size: 0.5rem;
+  cursor: pointer;
+  padding: 0.01rem !important;
+  position: relative;
+  left: 1rem;
+  top: 1.25rem;
+  border: none;
+  border-radius: 0.1rem;
+  margin: 0.2rem;
+  
+}
+
+.resetPassword-container{
+  width: 11.85rem;
+  height: 10.1rem;
+  background-color: var(--pinkClr);
+  font-size: 0.45rem;
+  margin: auto;
+  margin-top: 5rem;
+  border-radius: 0.1rem;
+}
+
+.resetPassword-container__small{
+  position: relative;
+  left: 0.5rem;
+  bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.5rem;
+}
+  .resetPassword-container__submit{
+    width: 3.25rem !important;
+    height: 1rem !important;
+    color: white;
+    background-color: var(--brandClr);
+    font-size: 0.5rem;
+    cursor: pointer;
+    padding: 0.01rem !important;
+    position: relative;
+    left: 2.5rem;
+    border: none;
+    border-radius: 0.1rem;
+    margin: 0.2rem;
+}
+.resetPassword-container form{
+  margin-left: 1.5rem;
+  }
 
 
 @media screen and (min-width: 768px) {
-  .p-inputotp-input {
-    width: 0.7rem !important;
-    margin: 0.1rem;
-    text-align: center;
-  }
-  .OtpFiled {
-    display: flex;
-    align-items: center;
-    gap: 1rem !important;
-  }
-
-  button {
-    cursor: pointer;
-  }
-  .otpPopup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-
+  
   .applicant-email-id,
   .applicant-password {
     font-size: 0.5rem;
@@ -208,6 +297,16 @@
   .applicant-container form {
     margin-left: 1.5rem;
   }
+
+  .RegisterPage-container{
+    width: 9rem;
+    height: 11rem;
+    background-color: var(--pinkClr);
+    font-size: 0.45rem;
+    margin: auto;
+    margin-top: 1.5rem;
+    border-radius: 0.1rem;
+  }
   .applicant-container form input {
     margin: 0.25rem;
     padding: 0.2rem;
@@ -222,23 +321,18 @@
     left: 0.3rem;
     font-weight: 600;
   }
-  .RegisterPage-container{
-    width: 9rem;
-    height: 11rem;
-    background-color: var(--pinkClr);
-    font-size: 0.45rem;
-    margin: auto;
-    margin-top: 1.5rem;
-    border-radius: 0.1rem;
-  }
-  .RegisterPage-container form label {
+  .RegisterPage-container form label
+  ,.forgotPassword-container form label
+  ,.resetPassword-container form label {
     font-size: 0.4rem;
     position: relative;
     top: 0.2rem;
     left: 0.2rem;
     font-weight: 600;
   }
-  .RegisterPage-container form input {
+  .RegisterPage-container form input 
+  ,.forgotPassword-container form input
+  ,.resetPassword-container form input{
     margin: 0.15rem;
     padding: 0.2rem;
     width: 5rem;
@@ -257,7 +351,9 @@
     top: 0.2rem !important;
     
 }
-.RegisterPage-container form{
+.RegisterPage-container form 
+,.forgotPassword-container form,
+.resetPassword-container form{
     margin-left: 1.8rem;
 }
 .RegisterPage-container__h6{
@@ -271,7 +367,127 @@
 .RegisterPage-container__Link{
     text-decoration: none;
 }
-  
+  .forgotPassword-container{
+    width: 9rem;
+    height: 5rem;
+    background-color: var(--pinkClr);
+    font-size: 0.45rem;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 0.1rem;
+  }
+.forgotPassword-container__h5,
+.resetPassword-container__h6{
+  color: var(--brandClr);
+  font-size: 0.6rem;
+  text-align: center;
+  padding-top: 0.4rem;
+}
+.forgotPassword-container__submit{
+  width: 2rem !important;
+  height: 0.85rem !important;
+  color: white;
+  background-color: var(--brandClr);
+  font-size: 0.40rem;
+  cursor: pointer;
+  padding: 0.01rem !important;
+  position: relative;
+  left: 1.5rem;
+  border: none;
+  border-radius: 0.1rem;
 
+}
+.forgotPassword-container__small{
+  position: relative;
+  left: 0.2rem;
+  bottom: 0.2rem;
+  font-size: 0.35rem;
+}
+.p-inputotp-input {
+  width: 1rem !important;
+  height: 1.1rem !important;
+  margin: 0.3rem;
+  text-align: center;
+  position: relative;
+  font-size: 0.50rem;
+  outline: none;
+  left: 1.5rem;
+  top: 0.3rem;
+  border-radius: 0.1rem;
+  border: 0.005rem solid var(--brandClr);
+}
+.OtpFiled {
+  display: flex;
+  align-items: center;
+  gap: 1rem !important;
+}
+.otpPopup {
+  width: 10rem;
+  height: 6.2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--pinkClr);
+  padding: 0.37rem;
+  border-radius: 0.1rem;
+  box-shadow: 0px 0px 0.13rem rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.forgotPassword-container__validOTP{
+  position: relative;
+  top: 0.15rem;
+  left: 1.8rem;
+  font-weight: 600;
+  font-size: 0.35rem;
+}
+.forgotPassword-container__submitOTP,
+.forgotPassword-container__resendOTP{
+  width: 2.5rem !important;
+  height: 0.85rem !important;
+  color: white;
+  background-color: var(--brandClr);
+  font-size: 0.40rem;
+  cursor: pointer;
+  padding: 0.01rem !important;
+  position: relative;
+  left: 1.75rem;
+  top: 0.5rem;
+  border: none;
+  border-radius: 0.1rem;
+  margin: 0.2rem;
   
+}
+
+.resetPassword-container{
+  width: 9rem;
+  height: 7rem;
+  background-color: var(--pinkClr);
+  font-size: 0.45rem;
+  margin: auto;
+  margin-top: 3rem;
+  border-radius: 0.1rem;
+}
+
+.resetPassword-container__small{
+  position: relative;
+  left: 0.2rem;
+  bottom: 0.2rem;
+  font-size: 0.35rem;
+}
+  .resetPassword-container__submit{
+  width: 2rem !important;
+  height: 0.85rem !important;
+  color: white;
+  background-color: var(--brandClr);
+  font-size: 0.40rem;
+  cursor: pointer;
+  padding: 0.01rem !important;
+  position: relative;
+  left: 1.5rem;
+  border: none;
+  border-radius: 0.1rem;
+}
+
 }

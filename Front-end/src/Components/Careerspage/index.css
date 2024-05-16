@@ -5,9 +5,7 @@
     margin: 0.6rem 0rem 0.5rem 2rem;
   }
   .vaccine-container{
-    width: 80%;
-    margin-left: 2rem;
-    box-shadow: 0 0.0377rem 0.41rem 0 rgba(0, 0, 0, 0.07);
+
     padding: 1rem;   
     border-radius: 0.1rem;
   }
@@ -39,7 +37,7 @@
   .vaccine-container__company-profile h2,
   .vaccine-container__job-description h2,
   .vaccine-container__skill-required h2 {
-      font-size: 0.65rem;
+      font-size: 0.5rem;
       font-weight: 600;
   }
   
@@ -80,7 +78,8 @@
   color: white;
   border: none;
   outline: none;
-  font-size: 0.5rem;
+  font-size: 0.42rem;
+  font-weight: 500 !important;
   border-radius: 0.1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -108,6 +107,7 @@
     font-size: 1.2rem;
     margin-top: 1rem;
     margin-left: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--brandClr);
   }
   #cancel-btn{
@@ -175,6 +175,9 @@
     color: rgba(0, 0, 0, 0.5);
     margin-top: 0.8rem;
   }
+  .card__role-overview ul li{
+    list-style: none;
+  }
   .card__read-more {
     text-decoration: underline;
     color: var(--brandClr);
@@ -184,12 +187,9 @@
   
   @media screen and (min-width: 768px) {
   
-    .Open-Positions {
-      font-size: 0.8rem;
-      font-weight: 400;
-    }
+ 
     .career-title {
-      font-size: 1rem;
+      font-size: 0.85rem;
       margin-top: 0.8rem;
       margin-left: 1rem;
       color: var(--brandClr);
@@ -211,11 +211,14 @@
       box-shadow: 0 0.0377rem 0.41rem 0 rgba(0, 0, 0, 0.07);
       border: none;
     }
+    
     .cards-main-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
+      position: relative;
+      bottom: 1.5rem;
     }
     .job-description {
       display: none;
@@ -258,7 +261,8 @@
       font-size: 0.3rem;
     }
     .vaccine-container{
-      margin-left: 4rem;
+      margin-left: 0.75rem;
+      box-shadow: unset;
     }
     .cards-main-container>a{
       text-decoration: none;
@@ -274,7 +278,155 @@
       height: 16rem;
       overflow: hidden;
       }
+      .career-Login{
+        float: right;
+        width: 2rem !important;
+        height: 0.94rem !important;
+        color: white;
+        background-color: var(--brandClr);
+        font-size: 0.45rem;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 0.01rem !important;
+        position: relative;
+        right: 2.2rem;
+        z-index: 9999;
+        border: none;
+        border-radius: 0.1rem;
+        position: fixed;
+        top: 0.45rem;
+      }
+      .vaccine-container__p{
+        line-height:0.6rem;
+        margin-top: 0.2rem;
+      }
+      .vaccine-container__p li{
+        padding: 0.15rem;
+      }
+      .careers__cards{
+        width: 7.22rem;
+        height: 6rem;
+        box-shadow: 0 0.0377rem 0.41rem 0 rgba(0, 0, 0, 0.07);
+        cursor: pointer;
+        border-radius: 0.1rem;
+      }
+      
+      .careers__card-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+      }
+      .careers__images{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.1rem 0.1rem 0 0;
+        object-fit: cover;
+      }
+    .careers__cards-h6{
+       font-size: 0.4rem;
+       margin-left: 0.3rem;
+       margin-top: 0.1rem;
+
+    }
+    .careers__cards-p{
+     font-size: 0.35rem;
+     width: 90%;
+     margin-left: 0.3rem;
+     margin-top: 0.1rem;
+     color: #777777;
+    }
+    .careers__banner-container{
+      margin-bottom: -2rem;
+    }
+    .careers__banner-img{
+      width: 100%;
+      height: 6.50rem;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 0.03rem 0.15rem 0px;
+    }
+    .careers__form-container{
+      width: 60%;      
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 0.34rem;
+      position: relative;
+      bottom: 5.3rem;
+      left: 1.35rem;
+    }
+    .careers__dropDown-select{
+      width: 6.45rem;
+      outline: none;
+      height: 1rem;
+      padding-left: 0.1rem;
+      border-radius: 0.1rem;
+     border: 0.01rem solid var(--brandClr); 
+     font-size: 0.4rem;
+     cursor: pointer;
+    }
+    .Open-Positions{
+      margin-left: 1.84rem;
+      position: relative;
+      bottom: 5.5rem;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--brandClr);
+      font-weight: bold;
+    }
+    .careers__FindJob-btn{
+      width: 3.15rem;
+      height: 1rem;
+      background-color: var(--brandClr);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 0.5rem;
+      border-radius: 0.1rem;
+    }
+    .reasonForApplying-container{
+      width: 12rem;
+      height: 8.9rem;
+      background-color: var(--pinkClr);
+      font-size: 0.45rem;
+      margin: auto;
+      margin-top: 2rem;
+      border-radius: 0.1rem;
+    }
+    .reasonForApplying-container form{
+      margin-left: 1rem;
+      margin-top: 0.2rem;
+
+    }
+    .reasonForApplying-container h5{
+      color: var(--brandClr);
+      font-size: 0.6rem;
+      text-align: center;
+      padding-top: 0.4rem;
+    }
+    .reasonForApplying-container form input{
+      margin: 0rem !important;
+      
+    }
+    .reasonForApplying-container textarea{
+      margin-top: 0rem !important;
+      width: 10rem;
+      height: 3rem;
+      padding:0.2rem;
+    }
+    .reasonForApplying-btn{
+     border-radius: 0.1rem;
+     border: none !important;
+     background-color: var(--brandClr);
+     color: white;
+     font-size: 0.45rem;
+     width: 2rem !important;
+     cursor: pointer;
+     position: relative;
+     left: 4rem;
+     top: 0.5rem;
+    }
     
-  
-  
   }

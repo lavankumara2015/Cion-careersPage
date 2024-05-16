@@ -1,50 +1,247 @@
 
-.dashBoard{
-display: flex;
-justify-content:space-between;
-padding: 1rem 2rem;
-align-items: center;
-
-}
-.dashBoard>h5{
-    color: var(--brandClr);
-
-}
-.dashBoard>button{
-    padding: 0.18rem;
-    background-color: var(--brandClr);
-    color: white;
-    border: none;
-    font-size: 0.45rem;
-    border-radius: 0.1rem;
-}
-.dashBoard+p{
-    color: var(--brandClr);
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-left: 1rem;
-}
-
-
 .dashBoard {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 0.5rem;
+  align-items: center;
   text-align: center;
 }
 
-table {
-    width: 95%;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
-
-  border-collapse: collapse;
+.dashBoard > h5 {
+  color: var(--brandClr);
+  padding-top: 0.5rem;
 }
 
-th, td {
-  padding: 8px;
-  border: 1px solid #dddddd;
-  text-align: left;
+.dashBoard-btn {
+  padding: 0.18rem;
+  background-color: var(--brandClr);
+  color: white;
+  border: none;
+  font-size: 0.45rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  float: right;
+  position: relative;
+  bottom: 1.55rem;
+  right: 0.5rem;
+  z-index: 9999;
+  font-weight: 500;
+}
+
+.dashBoard > p {
+  color: var(--brandClr);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  padding: 0.38rem;
+  justify-content: center;
   font-size: 0.35rem;
+
 }
 
-th {
-  background-color: #f2f2f2;
+.card {
+background-color: var(--pinkClr);
+  border-radius: 0.1rem;
+ 
+  width: 7.60rem;
+  box-shadow: 0 0.04rem 0.094rem rgba(0, 0, 0, 0.1);
 }
+
+.card-content p {
+  margin: 0.23rem 0;
+  
+}
+.card-content h4{
+color: var(--brandClr);
+text-align: center;
+font-size: 0.45rem;
+margin-bottom: 0.35rem;
+}
+
+.card-content p strong {
+  display: inline-block;
+  width: 2.26rem;
+  font-weight: 700;
+}
+.dashBoard-profileIcon{
+background-color: var(--brandClr);
+border-radius: 50%;
+color: white;
+width: 1.15rem;
+height: 1.15rem;
+float: right;
+position: relative;
+bottom: 1.65rem;
+right: 1.25rem;
+z-index: 9999;
+cursor: pointer;
+}
+.dashBoard-profileIcon>p{
+font-size: 0.7rem;
+text-align: center;
+position: relative;
+top: 0.1rem;
+right: 0.02rem;
+font-weight: 600;
+}
+.dashBoardInput{
+float: right;
+padding: 0.2rem;
+width: 5rem;
+position: relative;
+bottom: 1.5rem;
+right: 2rem;
+z-index: 9999;
+padding-left: 0.85rem;
+border: 0.025rem solid var(--brandClr);
+border-radius: 0.1rem;
+}
+.material-symbols-outlined{
+color: var(--brandClr);
+float: right;
+position: relative;
+bottom: 1.35rem;
+right: 1.25rem;
+z-index: 9999;
+}
+
+  
+  
+  @media screen and (min-width: 768px) {
+    
+
+    .dashBoard {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.65rem 0.5rem;
+      align-items: center;
+      text-align: center;
+  }
+  
+  .dashBoard > h5 {
+      color: var(--brandClr);
+      padding-top: 0.5rem;
+  }
+  
+  .dashBoard-btn {
+      padding: 0.18rem;
+      background-color: var(--brandClr);
+      color: white;
+      border: none;
+      font-size: 0.45rem;
+      border-radius: 0.1rem;
+      cursor: pointer;
+      float: right;
+      position: relative;
+      bottom: 1.55rem;
+      right: 0.5rem;
+      z-index: 9999;
+      font-weight: 500;
+     
+  }
+  
+  .dashBoard > p {
+      color: var(--brandClr);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 1rem;
+  }
+  
+  .spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 6rem;
+  }
+  
+  .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.38rem;
+      padding: 0.38rem;
+      justify-content: center;
+      font-size: 0.35rem;
+   
+  }
+  
+  .card {
+    background-color: var(--pinkClr);
+      border-radius: 0.1rem;
+     
+      width: 7.60rem;
+      box-shadow: 0 0.04rem 0.094rem rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content p {
+      margin: 0.23rem 0;
+      
+  }
+  .card-content h4{
+    color: var(--brandClr);
+    text-align: center;
+    font-size: 0.45rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .card-content p strong {
+      display: inline-block;
+      width: 2.26rem;
+      font-weight: 700;
+  }
+  .dashBoard-profileIcon{
+    background-color: var(--brandClr);
+    border-radius: 50%;
+    color: white;
+    width: 1.15rem;
+    height: 1.15rem;
+    float: right;
+    position: relative;
+    bottom: 1.65rem;
+    right: 1.25rem;
+    z-index: 9999;
+    cursor: pointer;
+  }
+  .dashBoard-profileIcon>p{
+    font-size: 0.7rem;
+    text-align: center;
+position: relative;
+top: 0.1rem;
+right: 0.02rem;
+font-weight: 600;
+  }
+  .dashBoardInput{
+    float: right;
+    padding: 0.2rem;
+    width: 5rem;
+    position: relative;
+    bottom: 1.5rem;
+    right: 2rem;
+    z-index: 9999;
+    padding-left: 0.85rem;
+    border: 0.025rem solid var(--brandClr);
+    border-radius: 0.1rem;
+  }
+  .material-symbols-outlined{
+    color: var(--brandClr);
+    float: right;
+    position: relative;
+    bottom: 1.35rem;
+    right: 1.25rem;
+    z-index: 9999;
+  }
+  
+
+  }
