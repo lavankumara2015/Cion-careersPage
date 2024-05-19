@@ -6,26 +6,28 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const ApplicantNewPassword = () => {
-    const {setApplicantPassword,} = useContext(AppContext)
+    const {setApplicantPassword,applicant_emailID} = useContext(AppContext)
 
 const navigation = useNavigate();
 const [NewPassword ,setNewPassword ] = useState("");
 const [ConfirmPassword ,setConfirmPassword ] = useState("");
 const [error ,setError] = useState("");
+var firstLogin = Cookies.get('value');
 
 
 
    const handleConfirmBtn = (e) => {
     e.preventDefault();
-    
-    const firstLogin = Cookies.get('value');
-
     if(firstLogin === "firstLogin"){
         if (NewPassword === ConfirmPassword) {
             setApplicantPassword(ConfirmPassword);
+            console.log(ConfirmPassword , "sfdkjsdfsjkfj")
             const token = Cookies.get("token");
-            axios.post(`${baseUrl}/applicantSetNewPassword`, {
-                ConfirmPassword
+            console.log(token)
+            axios.put(`${baseUrl}/applicantSetNewPassword`, {
+                ConfirmPassword,
+                applicant_emailID
+
             },{
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -49,7 +51,6 @@ const [error ,setError] = useState("");
         if (NewPassword === ConfirmPassword) {
             setApplicantPassword(ConfirmPassword);
             const token = Cookies.get("token");
-
                 alert("Register Successfully");
                 setConfirmPassword("");
                 setNewPassword("");
@@ -66,10 +67,10 @@ const [error ,setError] = useState("");
 
   return (
     <div className='resetPassword-container'>
-    <h6 className='resetPassword-container__h6'>Reset Password</h6>
+    <h6 className='resetPassword-container__h6'> { firstLogin === 'firstLogin' ? "Reset Password" : "Set Your Password"}</h6>
     <form onSubmit={handleConfirmBtn}>
-    <label htmlFor="NewPassword" className="NewPassword">New Password:</label><br />
-                <input type="text" name="NewPassword" id="forgotPassword" placeholder="Enter New Password"
+    <label htmlFor="NewPassword" className="NewPassword">{ firstLogin === 'firstLogin' ? "New Password:" : "Set Password:"}</label><br />
+                <input type="password" name="NewPassword" id="forgotPassword" placeholder="Enter New Password"
                     required
                     value={NewPassword}
                     onChange={(e) => setNewPassword(e.target.value)}

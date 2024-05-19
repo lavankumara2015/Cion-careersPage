@@ -18,12 +18,17 @@ export const ApplicantForgotPassword = () => {
   const [showOTPInput, setShowOTPInput] = useState(false);
   const [validOTP, setValidOTP] = useState("");
 
+
+
   const load = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   };
+
+  const firstLogin =Cookies.get('value');
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -86,7 +91,7 @@ export const ApplicantForgotPassword = () => {
 
   return (
     <div className="forgotPassword-container">
-      <h5 className="forgotPassword-container__h5">Forgot Password</h5>
+      <h5 className="forgotPassword-container__h5">{firstLogin === 'firstLogin' ? "Forgot Password" : "Verify Your Email"}</h5>
       <form onSubmit={handleSubmit}>
         <label htmlFor="forgotPassword" className="forgotPassword">
           Email:

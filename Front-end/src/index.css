@@ -39,7 +39,7 @@ html {
 }
 ::-webkit-scrollbar-thumb{
   background-color:var(--brandClr) !important;
-border-radius: 1rem;
+border-radius: 1rem !important;
 
 }
 .role-text-h1{

@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
@@ -13,38 +14,51 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 
+
+//CORS Error (Access-Control-Allow-Origin)
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   next();
 });
 
+
+// port connection
 app.listen(3004, () => {
   console.log("Server is running at loc");
 });
 
+
+//Database Connection
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "cion_careers",
 });
+connection.connect((err) => {
+  if (err) {
+    console.error("Error connecting to database: " + err.stack);
+    return;
+  }
+  console.log("Connected to database as id " + connection.threadId);
+});
 
+
+//Middleware (userAuthentication)
 const userAuthentication = (request, response, next) => {
   try {
     const authorization = request.headers.authorization;
-    console.log(authorization, "nteeeeeeeeeee")
     let token;
+    console.log(token , "dsfg")
     if (authorization !== undefined) {
       token = authorization.split(" ")[1];
     }
-    // console.log(token);
-
     if (token === undefined) {
       response.status(400);
       response.send({ msg: "Missing Token" });
     } else {
       jwt.verify(token, TokenKey, (err, payload) => {
-        console.log(payload)
+        console.log(payload);
         if (err) {
           response.status(400);
           response.send({ msg: "Invalid Token" });
@@ -60,9 +74,10 @@ const userAuthentication = (request, response, next) => {
   }
 };
 
+//applicant-login route
 app.post("/applicant-login", (req, res) => {
   const { email_id, password } = req.body;
-  console.log(email_id , "email_login_email_iddd")
+  console.log(email_id, "email_login_email_iddd");
   connection.query(
     `SELECT * FROM applicant_credentials WHERE applicant_email = ?`,
     [email_id],
@@ -77,10 +92,10 @@ app.post("/applicant-login", (req, res) => {
         });
       }
       const user = results[0];
-      console.log(user, "user");
-      console.log(password);
+      // console.log(user, "user");
+      // console.log(password);
       let userIsMatched = await compare(password, user.applicant_password);
-      console.log(userIsMatched);
+      // console.log(userIsMatched);
 
       if (userIsMatched) {
         let payload = {
@@ -88,7 +103,7 @@ app.post("/applicant-login", (req, res) => {
           password,
         };
         let token = await jwt.sign(payload, TokenKey);
-        console.log(token);
+        // console.log(token);
         return res.status(200).send({
           msg: "Login successful",
           token: token,
@@ -102,13 +117,6 @@ app.post("/applicant-login", (req, res) => {
   );
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error("Error connecting to database: " + err.stack);
-    return;
-  }
-  console.log("Connected to database as id " + connection.threadId);
-});
 
 app.post("/add-roleDetails", (req, res) => {
   const {
@@ -148,9 +156,10 @@ app.post("/add-roleDetails", (req, res) => {
   );
 });
 
-app.get("/show-roleDetails", (req, res) => {
+
+app.get("/show-roleDetails",  (req, res) => {
   connection.query(
-    `SELECT * FROM careers ORDER BY role_id DESC;`,
+    `SELECT * FROM careers WHERE status = 'Open' ORDER BY role_id DESC;`,
     (err, results) => {
       if (err) {
         console.error("Error executing query", err);
@@ -163,6 +172,8 @@ app.get("/show-roleDetails", (req, res) => {
     }
   );
 });
+
+
 
 app.get("/get-JDDetails/:id", (req, res) => {
   const { id } = req.params;
@@ -213,17 +224,14 @@ app.post("/add_applicant-credentials", (req, res) => {
 
 app.get("/get-applicationDetails", userAuthentication, (req, res) => {
   try {
-    // console.log(req)
     const { email_id } = req;
-    // console.log(email_id ,"email_iddddddddddddddddd");
     connection.query(
       `SELECT * FROM applicant_details where applicant_email="${email_id}"`,
       (err, results) => {
-        console.log(results)
         if (err) {
           return res
             .status(500)
-.send("Data Base Error" + "get-applicationDetails");
+            .send("Data Base Error" + "get-applicationDetails");
         }
         if (results.length === 0) {
           return res.status(500).send("No data found");
@@ -236,6 +244,46 @@ app.get("/get-applicationDetails", userAuthentication, (req, res) => {
   }
 });
 
+app.get("/get-applicationProfileDetails", userAuthentication, (req, res) => {
+  try {
+    const { email_id } = req;
+    connection.query(
+      `SELECT * FROM applicant_details where applicant_email="${email_id}"  LIMIT 1`,
+      (err, results) => {
+        if (err) {
+          return res
+            .status(500)
+            .send("Data Base Error");
+        }
+        if (results.length === 0) {
+          return res.status(500).send("No data found");
+        }
+        return res.status(200).json(results);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.put('/update-profileDetails',(req,res)=>{
+  try {
+    const {field, newValue, email} = req.body;
+    connection.query(`UPDATE applicant_details SET ${field}  = '${newValue}' WHERE applicant_email = '${email}'`,
+      (err, results) => {
+        if(err){
+          return res.status(500).send("Data Base Error");
+        }else{
+          return res.status(200).json({message:"update successfully"});
+        }
+      }
+    )
+  } catch (error) {
+    res.status(400).json({message:"update profile details error"})
+  }
+})
+
+// nodemailer function (send otp to email)
 function sendEmail({ recipient_email, OTP }) {
   return new Promise((resolve, reject) => {
     var transporter = nodemailer.createTransport({
@@ -299,6 +347,9 @@ function sendEmail({ recipient_email, OTP }) {
 
 app.post("/applicant_forgot_Password", (req, res) => {
   const { recipient_email, OTP } = req.body;
+
+  console.log(req.body , "hhhhhhsladkanjsk");
+
   connection.query(
     "SELECT * FROM applicant_credentials WHERE applicant_email = ?",
     [recipient_email],
@@ -317,6 +368,7 @@ app.post("/applicant_forgot_Password", (req, res) => {
   );
 });
 
+//applicant email verification route
 app.post("/applicant_verifyEmail", async (req, res) => {
   const { recipient_email, OTP } = req.body;
   try {
@@ -328,71 +380,24 @@ app.post("/applicant_verifyEmail", async (req, res) => {
   }
 });
 
-// app.post("/Submit-ApplicantDetails", (req, res) => {
-//   const {
-//     role,
-//     role_id,
-//     department,
-//     name,
-//     dob,
-//     highest_graduation,
-//     graduation_year,
-//     cgpa,
-//     current_address,
-//     mobile_number,
-//     email_id,
-//     experience,
-//     reason_for_applying,
-//     cv_uploaded,
-//     applicant_login_email,
-//   } = req.body;
-//   connection.query(
-//     ` INSERT INTO applicants (role_id,role,department,applicant_name,mobile_number,email,years_of_experience,
-//         DOB,highest_graduation,graduation_year,CGPA,current_address,reason_for_applying,CV_uploaded,applicant_login_email
-//       )VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
-//     [
-//       role_id,
-//       role,
-//       department,
-//       name,
-//       mobile_number,
-//       email_id,
-//       experience,
-//       dob,
-//       highest_graduation,
-//       graduation_year,
-//       cgpa,
-//       current_address,
-//       reason_for_applying,
-//       cv_uploaded,
-//       applicant_login_email,
-//     ],
-//     (err, results) => {
-//       if (err) {
-//         console.error("Error executing query", err);
-//         return res.status(500).send("Internal Server Error");
-//       }
-//       return res.status(200).send("Applicant details added successfully");
-//     }
-//   );
-// });
-
-
-app.post("/applicantSetNewPassword", userAuthentication, async (req, res) => {
+app.put("/applicantSetNewPassword", async (req, res) => {
   try {
-    const { email_id } = req;
+    const { applicant_emailID } = req.body;
     const { ConfirmPassword } = req.body;
+
+    console.log(applicant_emailID , "sfdggdgdfd");
+    console.log(ConfirmPassword , "sedrsfgg");
+
     const hashedPassword = await hash(ConfirmPassword, 10);
 
     const query = `UPDATE applicant_credentials SET applicant_password = ? WHERE applicant_email = ?`;
 
-    connection.query(query, [hashedPassword, email_id], (err, result) => {
+    connection.query(query, [hashedPassword, applicant_emailID], (err, result) => {
       if (err) {
         console.error(err);
         res.status(500).send({ error: "Internal server error" });
         return;
       }
-
       res.send({
         msg: "Updated Successfully",
       });
@@ -403,24 +408,29 @@ app.post("/applicantSetNewPassword", userAuthentication, async (req, res) => {
   }
 });
 
-
-
-app.post('/get-additional-details', (req, res) => {
+app.post("/get-additional-details", (req, res) => {
   const { email } = req.body;
 
-  connection.query('SELECT * FROM applicant_details WHERE applicant_email = ?', [email], (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Failed to fetch additional details' });
-    }
+  connection.query(
+    "SELECT * FROM applicant_details WHERE applicant_email = ?",
+    [email],
+    (err, results) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ message: "Failed to fetch additional details" });
+      }
 
-    if (results.length === 0) {
-      return res.status(404).json({ message: 'No details found for the provided email' });
-    }
+      if (results.length === 0) {
+        return res
+          .status(404)
+          .json({ message: "No details found for the provided email" });
+      }
 
-    res.status(200).json(results[0]);
-  });
+      res.status(200).json(results[0]);
+    }
+  );
 });
-
 
 
 app.post("/Submit-details", async (req, res) => {
@@ -435,9 +445,10 @@ app.post("/Submit-details", async (req, res) => {
   try {
     const hashedPassword = Password ? await hash(Password, 10) : null;
     let parsedApplicantRegisterDetails = applicantRegisterDetails;
-    if (typeof applicantRegisterDetails === 'string') {
+    if (typeof applicantRegisterDetails === "string") {
       parsedApplicantRegisterDetails = JSON.parse(applicantRegisterDetails);
     }
+
     const {
       role,
       role_id,
@@ -467,63 +478,78 @@ app.post("/Submit-details", async (req, res) => {
     connection.query(
       insertApplicantDetailsQuery,
       [
-        role_id, role, department, firstname, lastname, mobile_number, experience,
-        dob, highest_graduation, graduation_year, cgpa, current_address, reasonForApplying,
-        email
+        role_id,
+        role,
+        department,
+        firstname,
+        lastname,
+        mobile_number,
+        experience,
+        dob,
+        highest_graduation,
+        graduation_year,
+        cgpa,
+        current_address,
+        reasonForApplying,
+        email,
       ],
       (err, results) => {
         if (err) {
           console.error("Error executing applicant details query:", err);
-          return res.status(500).json({ message: "Applicant details not added, please check once." });
+          return res.status(500).json({
+            message: "Applicant details not added, please check once.",
+          });
         }
 
         const checkUniqueEmailQuery = `
           SELECT applicant_email FROM applicant_credentials WHERE applicant_email = ?`;
-        connection.query(
-          checkUniqueEmailQuery,
-          [email],
-          (err, results) => {
-            if (err) {
-              console.error("Error checking for unique email:", err);
-              return res.status(500).json({ message: "Error checking applicant credentials." });
-            }
+        connection.query(checkUniqueEmailQuery, [email], (err, results) => {
+          if (err) {
+            console.error("Error checking for unique email:", err);
+            return res.status(500).json({ message: "Error checking applicant credentials." });
+          }
 
-            if (results.length === 0) {
-              const insertApplicantCredentialsQuery = `
-                INSERT INTO applicant_credentials(applicant_name, applicant_email, applicant_password, applicant_cv)
-                VALUES (?, ?, ?, ?)`;
+          if (results.length === 0) {
+            const insertApplicantCredentialsQuery = `
+              INSERT INTO applicant_credentials(applicant_name, applicant_email, applicant_password, applicant_cv)
+              VALUES (?, ?, ?, ?)`;
 
-              connection.query(
-                insertApplicantCredentialsQuery,
-                [`${firstname} ${lastname}`, email, hashedPassword, cv_uploaded],
-                (err, results) => {
-                  if (err) {
-                    console.error("Error executing applicant credentials query:", err);
-                    return res.status(500).json({ message: "Applicant credentials not added, please check once." });
-                  }
-
-                  const payload = { email_id: email, password: Password };
-                  const token = jwt.sign(payload, TokenKey, { expiresIn: '1h' });
-                  return res.status(200).send({ msg: "Applicant details and credentials added successfully", token: token });
+            connection.query(
+              insertApplicantCredentialsQuery,
+              [`${firstname} ${lastname}`, email, hashedPassword, cv_uploaded],
+              (err, results) => {
+                if (err) {
+                  console.error("Error executing applicant credentials query:", err);
+                  return res.status(500).json({
+                    message: "Applicant credentials not added, please check once.",
+                  });
                 }
-              );
-            } else {
-              const payload = { email_id: email, password: Password };
-              const token = jwt.sign(payload, TokenKey, { expiresIn: '1h' });
-              return res.status(200).send({ msg: "Applicant details added, credentials already exist", token: token });
-            }
-          }
-        );
 
-        const update_CV = `UPDATE applicant_credentials SET  applicant_cv = ?  WHERE applicant_email = ? ; `;
-        
-        connection.query( update_CV ,[cv_uploaded, email],(err,result)=>{
-          if(err){
-          return res.status(500).json({message:"CV updated filed" , err})
+                const payload = { email_id: email, password: Password };
+                const token = jwt.sign(payload, TokenKey, { expiresIn: "1h" });
+                return res.status(200).json({
+                  message: "Applicant details and credentials added successfully",
+                  token: token,
+                });
+              }
+            );
+          } else {
+            const payload = { email_id: email, password: Password };
+            const token = jwt.sign(payload, TokenKey, { expiresIn: "1h" });
+
+            const updateCVQuery = `UPDATE applicant_credentials SET applicant_cv = ? WHERE applicant_email = ?`;
+            connection.query(updateCVQuery, [cv_uploaded, email], (err, result) => {
+              if (err) {
+                console.error("Error updating CV:", err);
+                return res.status(500).json({ message: "CV update failed" });
+              }
+              return res.status(200).json({
+                message: "Applicant details added, credentials already exist and CV updated",
+                token: token,
+              });
+            });
           }
-        })
-      
-      
+        });
       }
     );
   } catch (error) {
@@ -531,3 +557,166 @@ app.post("/Submit-details", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+app.get("/get-adminDashboard-data/:email", async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const getHRDetails = await new Promise((resolve, reject) => {
+      connection.query(
+        'SELECT * FROM admin WHERE hiring_manager_email = ?',
+        [email],
+        (err, result) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve(result);
+        }
+      );
+    });
+
+    if (getHRDetails.length > 0) {
+      const hrDetail = getHRDetails[0];
+
+      if (hrDetail.department === "Human Resources") {
+        const getAllDetails = await new Promise((resolve, reject) => {
+          connection.query(
+            'SELECT * FROM applicant_details',
+            (err, result) => {
+              if (err) {
+                return reject(err);
+              }
+              resolve(result);
+            }
+          );
+        });
+
+        console.log(getAllDetails, 'application');
+        return res.status(200).json(getAllDetails);
+
+      } else {
+        const getUserDetails = await new Promise((resolve, reject) => {
+          connection.query(
+            `SELECT * FROM applicant_details 
+             JOIN admin ON applicant_details.department = admin.department 
+             WHERE hiring_manager_email = ?`,
+            [email],
+            (err, result) => {
+              if (err) {
+                return reject(err);
+              }
+              resolve(result);
+            }
+          );
+        });
+
+        console.log(getUserDetails, 'user');
+        return res.status(200).json(getUserDetails);
+      }
+    } else {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+  } catch (err) {
+    console.error("Error fetching data:", err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.get("/get-careers_data-table/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+    console.log(email, "kadksj");
+
+    const hrDetail = await new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * FROM admin WHERE hiring_manager_email = ?`,
+        [email],
+        (err, result) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve(result);
+        }
+      );
+    });
+
+    if (hrDetail.length > 0) {
+      const hr = hrDetail[0];
+      if (hr.department === "Human Resources") {
+        const getAllDetails = await new Promise((resolve, reject) => {
+          connection.query(`SELECT * FROM careers`, (err, result) => {
+            if (err) {
+              return reject(err);
+            }
+            resolve(result);
+          });
+        });
+
+        console.log(getAllDetails, "application");
+        return res.status(200).json(getAllDetails);
+      } else {
+        const getUserDetails = await new Promise((resolve, reject) => {
+          connection.query(
+            `SELECT * 
+            FROM admin 
+            JOIN careers ON admin.department = careers.department 
+            WHERE admin.hiring_manager_email = ?`,
+            [email],
+            (err, result) => {
+              if (err) {
+                return reject(err);
+              }
+              resolve(result);
+            }
+          );
+        });
+
+        console.log(getUserDetails, "user");
+        return res.status(200).json(getUserDetails);
+      }
+    } else {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+  } catch (error) {
+    console.error("Error executing query", error);
+    return res.status(500).send("Internal Server Error");
+  }
+});
+
+
+app.put('/update-careersStatus',(req,res)=>{
+  try {
+    const {field, newValue, role_id} = req.body;
+
+    connection.query(`UPDATE careers SET ${field}  = '${newValue}' WHERE role_id = '${role_id}'`,
+      (err, results) => {
+        if(err){
+          return res.status(500).send("Data Base Error");
+        }else{
+          return res.status(200).json({message:"update successfully"});
+        }
+      }
+    )
+  } catch (error) {
+    res.status(400).json({message:"update careers status error"})
+  }
+})
+
+
+app.put('/update-applicationStatus',(req,res)=>{
+  try {
+    const {field, newValue, role_id} = req.body;
+
+    connection.query(`UPDATE applicant_details SET ${field}  = '${newValue}' WHERE role_id = '${role_id}'`,
+      (err, results) => {
+        if(err){
+          return res.status(500).send("Data Base Error");
+        }else{
+          return res.status(200).json({message:"update successfully"});
+        }
+      }
+    )
+  } catch (error) {
+    res.status(400).json({message:"update application Status error"})
+  }
+})

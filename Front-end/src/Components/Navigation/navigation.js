@@ -13,6 +13,14 @@ import { ApplicantForgotPassword } from '../ApplicantLogin/forgotPassword'
 import { ApplicantNewPassword } from '../ApplicantLogin/setNewPassword'
 import { ApplicantForm } from '../ApplicaticantRegisterForm'
 import { ReasonForApplying } from '../Careerspage/reasonForApplying'
+import ApplicantProfileDetails from '../Applicantdashboard/applicantProfileDetails'
+import OtpVerification from '../ApplicantLogin/otpVerification'
+import HiringManager from '../HiringManagerLogin'
+import { HiringManagerDashBoard } from '../HiringManagerLogin/adminDashBoard'
+import { CareersList } from '../HiringManagerLogin/careersList'
+
+
+
 
 
 export const Navigation = () => {
@@ -22,21 +30,23 @@ export const Navigation = () => {
   <BrowserRouter>
   <Routes>
   <Route path='/' element={<Careers/>}/>
-   <Route path='/role-details' element={<RoleForm/>}/>
-   <Route path='/application-created' element={<ApplicationDone/>}/>
+  <Route path='/role-details' element={<RoleForm/>}/>
+  <Route path='/hiring-managerLogin' element={<HiringManager/>} />
+  <Route path='/hiring-Manager-DashBoard/:hr' element={<HiringManagerDashBoard/>} />
+  <Route path='/careersList/:email' element={<CareersList/>} />
+  <Route path='/application-created' element={<ApplicationDone/>}/>
   <Route path='/job-description' element={<CareerDetails/>} />
   <Route path='/applicant-login' element={<ApplicantLogin/>} />
-  <Route path='/applicant-register' element={<ApplicantRegisterPage/>} />
   <Route path='/applicant-dashboard' element={<ApplicantDashBoard/>} />
   <Route path='/applicationSuccessPage' element={<ApplicationSuccessPage/>} />
   <Route path='/applicant-forgotPassword' element={<ApplicantForgotPassword/>} />
   <Route path='/applicantSetNewPassword' element={<ApplicantNewPassword/>} />
   <Route path='/applicant-registerForm' element={<ApplicantForm/>} />
   <Route path='/reasonForApplying' element={<ReasonForApplying/>} />
+  <Route path='/applicant-profileDetails' element={<ApplicantProfileDetails/>} />
+  <Route path='/otpVerification' element={<OtpVerification/>} />
   </Routes>
-  </BrowserRouter> 
-
-
+  </BrowserRouter>
   </>
   )
 }

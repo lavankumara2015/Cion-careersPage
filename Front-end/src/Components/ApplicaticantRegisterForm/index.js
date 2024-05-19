@@ -11,6 +11,7 @@ export const ApplicantForm = () => {
   const [next , setNext]=useState(false);
 
 
+
     const applicantForm = useRef({
         firstname: "",
         lastname:"",

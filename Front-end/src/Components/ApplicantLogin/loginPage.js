@@ -12,21 +12,21 @@ export const ApplicantLogin = () => {
   const [password, setPassword] = useState("");
   const [error, setError]=useState("");
 
-  useEffect(() => {
-    let token = Cookies.get('token')
-    let firstLogin = Cookies.get('value')
+  // useEffect(() => {
+  //   let token = Cookies.get('token')
+  //   let firstLogin = Cookies.get('value')
 
-    if(firstLogin === 'firstLogin'){
-      if (token){
-        navigation('/applicant-dashboard', {
-          replace: true
-        })
-    }else{
-      navigation('/applicant-login')
-    }
+  //   if(firstLogin === 'firstLogin'){
+  //     if (token){
+  //       navigation('/applicant-dashboard', {
+  //         replace: true
+  //       })
+  //   }else{
+  //     navigation('/applicant-login')
+  //   }
    
-    }
-  }, [])
+  //   }
+  // }, [])
 
 
   const handleFormSubmit = async (e) => {
@@ -58,6 +58,23 @@ export const ApplicantLogin = () => {
       setError(error?.response?.data?.msg || "")
     }
   }
+  const handleRegisterBtn =()=>{
+    const firstLogin =  Cookies.get('value');
+
+      if(firstLogin === 'firstLogin'){
+       navigation('/');
+      }else{
+        navigation(`/applicant-registerForm`);
+      }
+  }
+
+  const handleForgotPassword = ()=>{
+    let firstLogin = Cookies.get('value');
+     firstLogin = "firstLogin"
+         Cookies.set('value' , firstLogin) 
+         navigation('/applicant-forgotPassword')
+    
+  }
 
   return (
     <div className='applicant-container' >
@@ -71,9 +88,9 @@ export const ApplicantLogin = () => {
         {
           error && <small className='applicant-container__small' style={{color:"red"}}>{error}</small>
         }<br/>
-        <Link className='applicant-container__Link' to={"/applicant-forgotPassword"}>Forgot Password</Link><br/>
+        <div className='applicant-container__Link' onClick={handleForgotPassword}>Forgot Password</div><br/>
         <input className='applicant-container__submit' type="submit" value="Login" id="login-btn"/>
-        <h5 className='applicant-container__h5'>Don't have account <Link className='applicant-container__Link2' to={'/applicant-registerForm'}>Register here</Link></h5>
+        <h5 className='applicant-container__h5'>Don't have account <span onClick={handleRegisterBtn} className='applicant-container__Link2'>Register here</span></h5>
       </form>
     </div>
   );

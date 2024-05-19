@@ -5,6 +5,7 @@ import { baseUrl} from '../../App';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+
 export const ReasonForApplying = () => {
   const {jdData} = useContext(AppContext);
   const navigation = useNavigate();
@@ -15,10 +16,7 @@ export const ReasonForApplying = () => {
 
 
 
-  // console.log(jdData[0].role)
-  // console.log(jdData[0].role_id)
-  // console.log(jdData[0].department)
-
+  
   const handleSubmitForm = async (e) => {
     e.preventDefault();
   
@@ -116,8 +114,6 @@ export const ReasonForApplying = () => {
     }
   };
   
-  
-  
   return (
     <div className='reasonForApplying-container'>
 
@@ -151,35 +147,3 @@ export const ReasonForApplying = () => {
   )
 }
 
-
-
-{/* <form onSubmit={handleSubmitForm}>
-    <label htmlFor="reason_for_applying" className="reason_for_applying">
-      Reason for Applying{" "}
-      <p style={{ color: "red", display: "inline-block" }}>*</p>
-    </label>
-    <br />
-    <textarea
-      style={{ resize: "none" }}
-      id="reason_for_applying"
-      name="reason_for_applying"
-      placeholder="Enter Reason-For-Applying"
-      value={reason}
-      onChange={(e)=>setReason(e.target.value)}
-      required
-    />
-    <br />
-    <label htmlFor="cv_uploaded" className="cv_uploaded">
-      Upload CV<p style={{ color: "red", display: "inline-block" }}>*</p>
-    </label>
-    <input
-      type="file"
-      id="cv_uploaded"
-      name="cv_uploaded"
-      accept=".pdf, .doc, .docx"
-      required
-      value={cv_uploaded}
-      onChange={(e)=>setCV_uploaded(e.target.value)}
-    />
-   <input type="submit" className="form-btn" defaultValue="Submit" />
-    </form> */}
