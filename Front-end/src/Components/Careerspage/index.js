@@ -169,7 +169,7 @@ function Careers() {
           />
         </form>
       </div>
-      <br />
+      <br/>
       {loading ? (
         <p
           style={{

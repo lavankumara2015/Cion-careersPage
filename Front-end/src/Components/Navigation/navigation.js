@@ -18,6 +18,7 @@ import OtpVerification from '../ApplicantLogin/otpVerification'
 import HiringManager from '../HiringManagerLogin'
 import { HiringManagerDashBoard } from '../HiringManagerLogin/adminDashBoard'
 import { CareersList } from '../HiringManagerLogin/careersList'
+import { RedirectToApplications } from '../HiringManagerLogin/redirectToApplications'
 
 
 
@@ -45,6 +46,7 @@ export const Navigation = () => {
   <Route path='/reasonForApplying' element={<ReasonForApplying/>} />
   <Route path='/applicant-profileDetails' element={<ApplicantProfileDetails/>} />
   <Route path='/otpVerification' element={<OtpVerification/>} />
+  <Route path='/redirect-to-application/:id' element={<RedirectToApplications/>}/>
   </Routes>
   </BrowserRouter>
   </>

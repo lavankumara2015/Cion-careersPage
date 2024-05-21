@@ -21,20 +21,19 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // port connection
 app.listen(3004, () => {
   console.log("Server is running at loc");
 });
 
-
 //Database Connection
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "122000",
   database: "cion_careers",
 });
+
 connection.connect((err) => {
   if (err) {
     console.error("Error connecting to database: " + err.stack);
@@ -43,26 +42,26 @@ connection.connect((err) => {
   console.log("Connected to database as id " + connection.threadId);
 });
 
-
 //Middleware (userAuthentication)
 const userAuthentication = (request, response, next) => {
   try {
     const authorization = request.headers.authorization;
+    console.log(authorization)
     let token;
-    console.log(token , "dsfg")
     if (authorization !== undefined) {
       token = authorization.split(" ")[1];
     }
+
     if (token === undefined) {
       response.status(400);
       response.send({ msg: "Missing Token" });
     } else {
       jwt.verify(token, TokenKey, (err, payload) => {
-        console.log(payload);
         if (err) {
           response.status(400);
           response.send({ msg: "Invalid Token" });
         } else {
+
           request.email_id = payload.email_id;
           request.password = payload.password;
           next();
@@ -77,7 +76,6 @@ const userAuthentication = (request, response, next) => {
 //applicant-login route
 app.post("/applicant-login", (req, res) => {
   const { email_id, password } = req.body;
-  console.log(email_id, "email_login_email_iddd");
   connection.query(
     `SELECT * FROM applicant_credentials WHERE applicant_email = ?`,
     [email_id],
@@ -92,18 +90,13 @@ app.post("/applicant-login", (req, res) => {
         });
       }
       const user = results[0];
-      // console.log(user, "user");
-      // console.log(password);
       let userIsMatched = await compare(password, user.applicant_password);
-      // console.log(userIsMatched);
-
       if (userIsMatched) {
         let payload = {
           email_id,
           password,
         };
         let token = await jwt.sign(payload, TokenKey);
-        // console.log(token);
         return res.status(200).send({
           msg: "Login successful",
           token: token,
@@ -174,7 +167,6 @@ app.get("/show-roleDetails",  (req, res) => {
 });
 
 
-
 app.get("/get-JDDetails/:id", (req, res) => {
   const { id } = req.params;
   connection.query(
@@ -192,9 +184,9 @@ app.get("/get-JDDetails/:id", (req, res) => {
   );
 });
 
+
 app.post("/add_applicant-credentials", (req, res) => {
   const { applicant_name, applicant_email, applicant_password } = req.body;
-
   connection.query(
     `SELECT * FROM applicant_credentials WHERE applicant_email = ?`,
     [applicant_email],
@@ -222,6 +214,7 @@ app.post("/add_applicant-credentials", (req, res) => {
   );
 });
 
+
 app.get("/get-applicationDetails", userAuthentication, (req, res) => {
   try {
     const { email_id } = req;
@@ -244,6 +237,7 @@ app.get("/get-applicationDetails", userAuthentication, (req, res) => {
   }
 });
 
+
 app.get("/get-applicationProfileDetails", userAuthentication, (req, res) => {
   try {
     const { email_id } = req;
@@ -265,6 +259,7 @@ app.get("/get-applicationProfileDetails", userAuthentication, (req, res) => {
     console.log(error);
   }
 });
+
 
 app.put('/update-profileDetails',(req,res)=>{
   try {
@@ -337,7 +332,6 @@ function sendEmail({ recipient_email, OTP }) {
     };
     transporter.sendMail(mail_configs, (error, info) => {
       if (error) {
-        console.log(error);
         return reject({ message: `An error has occurred` });
       }
       return resolve({ message: "Email sent successfully" });
@@ -347,9 +341,6 @@ function sendEmail({ recipient_email, OTP }) {
 
 app.post("/applicant_forgot_Password", (req, res) => {
   const { recipient_email, OTP } = req.body;
-
-  console.log(req.body , "hhhhhhsladkanjsk");
-
   connection.query(
     "SELECT * FROM applicant_credentials WHERE applicant_email = ?",
     [recipient_email],
@@ -380,18 +371,13 @@ app.post("/applicant_verifyEmail", async (req, res) => {
   }
 });
 
+
 app.put("/applicantSetNewPassword", async (req, res) => {
   try {
     const { applicant_emailID } = req.body;
     const { ConfirmPassword } = req.body;
-
-    console.log(applicant_emailID , "sfdggdgdfd");
-    console.log(ConfirmPassword , "sedrsfgg");
-
     const hashedPassword = await hash(ConfirmPassword, 10);
-
     const query = `UPDATE applicant_credentials SET applicant_password = ? WHERE applicant_email = ?`;
-
     connection.query(query, [hashedPassword, applicant_emailID], (err, result) => {
       if (err) {
         console.error(err);
@@ -408,9 +394,9 @@ app.put("/applicantSetNewPassword", async (req, res) => {
   }
 });
 
+
 app.post("/get-additional-details", (req, res) => {
   const { email } = req.body;
-
   connection.query(
     "SELECT * FROM applicant_details WHERE applicant_email = ?",
     [email],
@@ -420,13 +406,11 @@ app.post("/get-additional-details", (req, res) => {
           .status(500)
           .json({ message: "Failed to fetch additional details" });
       }
-
       if (results.length === 0) {
         return res
           .status(404)
           .json({ message: "No details found for the provided email" });
       }
-
       res.status(200).json(results[0]);
     }
   );
@@ -558,9 +542,9 @@ app.post("/Submit-details", async (req, res) => {
   }
 });
 
+
 app.get("/get-adminDashboard-data/:email", async (req, res) => {
   const { email } = req.params;
-
   try {
     const getHRDetails = await new Promise((resolve, reject) => {
       connection.query(
@@ -577,7 +561,6 @@ app.get("/get-adminDashboard-data/:email", async (req, res) => {
 
     if (getHRDetails.length > 0) {
       const hrDetail = getHRDetails[0];
-
       if (hrDetail.department === "Human Resources") {
         const getAllDetails = await new Promise((resolve, reject) => {
           connection.query(
@@ -590,11 +573,8 @@ app.get("/get-adminDashboard-data/:email", async (req, res) => {
             }
           );
         });
-
-        console.log(getAllDetails, 'application');
         return res.status(200).json(getAllDetails);
-
-      } else {
+      }else{
         const getUserDetails = await new Promise((resolve, reject) => {
           connection.query(
             `SELECT * FROM applicant_details 
@@ -609,8 +589,6 @@ app.get("/get-adminDashboard-data/:email", async (req, res) => {
             }
           );
         });
-
-        console.log(getUserDetails, 'user');
         return res.status(200).json(getUserDetails);
       }
     } else {
@@ -622,10 +600,10 @@ app.get("/get-adminDashboard-data/:email", async (req, res) => {
   }
 });
 
+
 app.get("/get-careers_data-table/:email", async (req, res) => {
   try {
     const { email } = req.params;
-    console.log(email, "kadksj");
 
     const hrDetail = await new Promise((resolve, reject) => {
       connection.query(
@@ -644,15 +622,13 @@ app.get("/get-careers_data-table/:email", async (req, res) => {
       const hr = hrDetail[0];
       if (hr.department === "Human Resources") {
         const getAllDetails = await new Promise((resolve, reject) => {
-          connection.query(`SELECT * FROM careers`, (err, result) => {
+          connection.query(`SELECT * FROM careers ORDER BY role_id DESC;`, (err, result) => {
             if (err) {
               return reject(err);
             }
             resolve(result);
           });
         });
-
-        console.log(getAllDetails, "application");
         return res.status(200).json(getAllDetails);
       } else {
         const getUserDetails = await new Promise((resolve, reject) => {
@@ -670,8 +646,6 @@ app.get("/get-careers_data-table/:email", async (req, res) => {
             }
           );
         });
-
-        console.log(getUserDetails, "user");
         return res.status(200).json(getUserDetails);
       }
     } else {
@@ -683,7 +657,7 @@ app.get("/get-careers_data-table/:email", async (req, res) => {
   }
 });
 
-
+// update role status
 app.put('/update-careersStatus',(req,res)=>{
   try {
     const {field, newValue, role_id} = req.body;
@@ -702,7 +676,7 @@ app.put('/update-careersStatus',(req,res)=>{
   }
 })
 
-
+// update application status
 app.put('/update-applicationStatus',(req,res)=>{
   try {
     const {field, newValue, role_id} = req.body;
@@ -720,3 +694,43 @@ app.put('/update-applicationStatus',(req,res)=>{
     res.status(400).json({message:"update application Status error"})
   }
 })
+
+//Hiring Manager Login
+app.post("/admin-login",async (req, res) => {
+  const { email, password } = req.body;
+
+  const query = 'SELECT * FROM admin WHERE hiring_manager_email = ?';
+  connection.query(query, [email], (err, result) => {
+    if (err) {
+      return res.status(500).send({ message: "Database Error" });
+    }
+    if (result.length === 0) {
+      return res.status(401).send({ message: "Invalid Email" });
+    }
+    else{
+      if (result[0].hiring_manager_password === parseInt(password)) {
+        return res.status(200).send({ message: "Login successfully", data: result[0] });
+      } else {
+        return res.status(401).send({ message: "Invalid Password" });
+      }
+    }
+  });
+});
+
+
+app.get("/get-SelectedApplicationDetails/:id", (req,res)=>{
+  try {
+    const {id} = req.params;
+    const query = 'SELECT * FROM applicant_details WHERE role_id = ?';
+    connection.query(query,[id],(err,result)=>{
+      if(err){
+        return res.status(500).send({message:"Database Error"})
+        }
+        else{
+          return res.status(200).json({message:"get application Details successfully",data:result})
+          }
+          })
+          } catch (error) {
+            res.status(400).json({message:"get application Details error"})
+          }
+      })

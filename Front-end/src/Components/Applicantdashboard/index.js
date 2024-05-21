@@ -79,7 +79,7 @@ export const ApplicantDashBoard = () => {
         return "blue";
       case "Under Consideration":
         return "yellow";
-      case "Success":
+      case "Accepted":
         return "green";
       case "Rejected":
         return "red";
@@ -116,21 +116,21 @@ export const ApplicantDashBoard = () => {
         <span className="material-symbols-outlined">search</span>
       </div>
       <div className="dashBoard">
-        <h5>Your Applications</h5>
+        <h5>Your Application Status</h5>
       </div>
       <div className="cards-container">
         {filteredApplicationDetails.map((value, ind) => (
           <div className="cards" key={ind}>
             <div className="card-content">
-              <h4>Application Status</h4>
+              <h4>{value.role}</h4>
               <p>
                 <strong>Department:</strong> {value.department}
               </p>
               <p>
-                <strong>Role:</strong> {value.role}
+                <strong>Role ID:</strong> {value.role_id}
               </p>
               <p>
-                <strong>Role ID:</strong> {value.role_id}
+                <strong>Experience:</strong> {value.years_of_experience}
               </p>
               <p>
                 <strong>Email:</strong> {value.applicant_email}

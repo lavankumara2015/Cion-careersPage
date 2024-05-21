@@ -83,7 +83,9 @@ border-radius: 0.1rem;
  margin-left: 1rem;
 }
 
-.hmDashBoard-containerBtn , .CareerListBtn{
+.hmDashBoard-containerBtn 
+, .CareerListBtn,
+.redirectToApplications-container__Btn{
     padding: 0.18rem;
     background-color: var(--brandClr);
     color: white;
@@ -148,7 +150,20 @@ border-radius: 0.1rem;
     margin-left: 0.5rem;
     border: solid 1px #000 !important;
     border-radius: none !important;
-    
+  }
+  .redirectToApplications-container h5{
+    color: var(--brandClr);
+    font-size: 0.80rem;
+    padding-top: 0.3rem;
+    text-align: center;
+    position: relative;
+    top: 0.5rem;
+  }
+  .redirectToApplications-container__Btn{
+bottom: 2.85rem !important;
+  }
+  .redirectToApplications-container .ag-root-wrapper{
+    height: 10rem !important;
   }
 
 }

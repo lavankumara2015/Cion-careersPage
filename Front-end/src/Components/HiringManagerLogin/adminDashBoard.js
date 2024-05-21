@@ -67,7 +67,7 @@ export const HiringManagerDashBoard = () => {
       editable: true,
       cellEditor: "agSelectCellEditor",
       cellEditorParams: {
-        values: ["Applied", "Under Consideration", "Success", "Rejected"],
+        values: ["Applied", "Under Consideration", "Accepted", "Rejected"],
       },
     },
   ]);
@@ -121,7 +121,7 @@ export const HiringManagerDashBoard = () => {
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
-      Cookies.remove("token");
+      Cookies.remove("TOKENS");
       navigate("/hiring-managerLogin");
     }
   };
@@ -188,8 +188,6 @@ export const HiringManagerDashBoard = () => {
           />
         </div>
       </div>
-
-      
     </>
   );
 };

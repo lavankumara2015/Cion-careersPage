@@ -21,7 +21,23 @@ export const CareersList = () => {
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState();
   const [columnDefs, setColumnDefs] = useState([
-    { field: "role_id", headerName: "Role ID", width: "109px" },
+    { field: "role_id", headerName: "Role ID", width: "135px" , cellRenderer: (params) => {
+      const { value } = params;
+      const handleClick = () => {
+        window.location.replace(`/redirect-to-application/${value}`);
+      };
+      const cellStyle = {
+        color: "#000",
+        textDecoration: "underline", 
+        cursor: "pointer", 
+        paddingLeft : "5px"
+      };
+      return (
+        <p onClick={handleClick} style={cellStyle}>
+          {value}
+        </p>
+      );
+    }, },
     { field: "role", headerName: "Role" },
     { field: "department", headerName: "Department" },
     { field: "location", headerName: "Location", width: "124px" },
@@ -89,12 +105,12 @@ export const CareersList = () => {
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
-      Cookies.remove("token");
+      Cookies.remove("TOKENS");
       navigate("/hiring-managerLogin");
     }
   };
 
-  const paginationPageSizeSelector = [5, 50, 100, 200, 500];
+  const paginationPageSizeSelector = [10, 50, 100, 200, 500];
 
   return (
     <>
@@ -111,7 +127,7 @@ export const CareersList = () => {
         theme="dark"
       />
       <div className="career-main-container">
-        <h5>Careers list</h5>
+        <h5>ALL Roles list</h5>
       </div>
 
       <div className="careers-main-container__agGrid">
@@ -131,7 +147,7 @@ export const CareersList = () => {
               onGridReady={onGridReady}
               onCellValueChanged={handleCellEdit}
               pagination={true}
-              paginationPageSize={5}
+              paginationPageSize={10}
               paginationPageSizeSelector={paginationPageSizeSelector}
             />
           </div>
